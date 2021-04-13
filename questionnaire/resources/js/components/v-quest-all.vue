@@ -1,11 +1,10 @@
 <template>
 
-
 </template>
 
 <script>
     export default {
-        name: "v-header"
+        name: "v-quest-all"
     }
 </script>
 

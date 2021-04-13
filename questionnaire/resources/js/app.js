@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('v-header', require('./components/v-header.vue').default);
+Vue.component('v-forms', require('./components/v-forms.vue').default);
+Vue.component('v-quest-all', require('./components/v-quest-all.vue').default);
 
 
 /**

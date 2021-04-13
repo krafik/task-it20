@@ -1,5 +1,7 @@
 body {
-  background: #cccccc;
+  background: #DCDCDC;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -7,19 +9,95 @@ a {
   color: inherit;
 }
 
-.app__navigate {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 60px;
-  width: 100%;
+ul {
+  margin: 0;
 }
 
-.navigate__links {
+label {
+  margin-bottom: 0;
+}
+
+.app__navigate {
   display: flex;
-  justify-content: space-around;
-  width: 200px;
-  margin: 0;
-  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app__forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-forms {
+  height: 100vh;
+}
+
+.app-forms__wrapper {
+  width: 320px;
+  padding: 5px;
+}
+
+.app-forms__p-form {
+  width: 120px;
+  text-align: center;
+  display: inline-block;
+  border-bottom: none;
+  padding: 15px;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.app-forms__p-form_active {
+  background-color: #fff;
+}
+
+.app-forms__form {
+  padding: 10px;
+}
+
+.form {
+  position: relative;
+  background: #fff;
+}
+
+.form__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.form__input {
+  width: 220px;
+}
+
+.form__lbl {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.form__in-name,
+.form__in-mail,
+.form__in-pass {
+  margin: 5px 0;
+}
+
+.form__checkpass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.del {
+  display: none;
+}
+
+input[name=tabs] {
+  display: none;
 }
 
