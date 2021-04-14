@@ -9,63 +9,158 @@ ul
     margin: 0
 label
     margin-bottom: 0
+
+
 .app
-    &__navigate
-        display: flex
-        justify-content: space-between
-        align-items: center
-    &__forms
+    &__section
         display: flex
         justify-content: center
         align-items: center
-    &-forms
-        height: 100vh
+    &__guest-form, &__quest-form
+        height: 500px //100vh
+        margin: 5px 0
+    &__form-wrapper
+        padding: 10px
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5)
 
-        &__wrapper
-            width: 320px
-            padding: 5px
-
-        &__p-form
-            width: 120px
-            text-align: center
-            display: inline-block
-            border-bottom: none
-            padding: 15px
-            margin-bottom: -1px
-            cursor: pointer
-
-            &_active
-                background-color: #fff
-        &__form
-            padding: 10px
+/*all-forms*/
 
 .form
-    position: relative
     background: #fff
-    &__inputs
+    padding: 10px
+    &__hide
+        display: none
+    &.active
+        display: block
+    &__input-w
+        padding: 5px 0
+    &__in-name,&__in-mail, &__in-pass, &__btn
         display: flex
-        flex-direction: column
-        align-items: flex-end
-    &__input
-        width: 220px
-    &__lbl
-        margin-left: 5px
-        margin-right: 5px
-    &__in-name, &__in-mail, &__in-pass
-        margin: 5px 0
+        justify-content: flex-end
+        align-items: center
     &__checkpass
         display: flex
         justify-content: center
         align-items: center
-    &__btn
-        display: flex
-        justify-content: flex-end
+    &__lbl
+        margin-right: 10px
+        &-check
+            margin-left: 10px
+    &__input
+        width: 200px
+        &-q
+            width: 320px
 
-//input[type=radio]
+
+.form-btn
+    &__btn-send
+        border-radius: 3px
+        width: 110px
+
+/*end all-forms*/
+
+/*guest-form*/
+.guest-form
+    &__wrapper
+        width: 300px
+    &__lbls
+        display: flex
+    &__p-form
+        font-weight: 600
+        padding: 10px
+        //margin-bottom: -1px
+        cursor: pointer
+        &.active
+            background: #fff
+            color: #181818
+
+/*end guest-form*/
+
+/*quest-page*/
+.quest
+    &-page
+        &__wrapper
+            width: 500px
+    &-form
+        &__inp-w
+            display: flex
+            justify-content: space-between
+            align-items: flex-start
+            &-check
+                display: flex
+                justify-content: center
+                align-items: center
+                & input
+                    //margin-left: 25px
+                & label
+                    margin: 0 40px 0 10px
+        &__footer
+            display: flex
+            justify-content: space-between
+
+.captcha
+    &__img, &__inp
+        width: 60px
+    &__inp
+        margin: 0 5px
+    &__text
+        margin-right: 15px
+/*end quest-page*/
+
+//.app
+//    &__navigate
+//        display: flex
+//        justify-content: space-between
+//        align-items: center
+//    &__forms
+//        display: flex
+//        justify-content: center
+//        align-items: center
+//    &-forms
+//        height: 100vh
+//        &__wrapper
+//            width: 320px
+//            padding: 5px
+//        &__p-form
+//            width: 120px
+//            text-align: center
+//            display: inline-block
+//            border-bottom: none
+//            padding: 15px
+//            margin-bottom: -1px
+//            cursor: pointer
+//
+//            &_active
+//                background-color: #fff
+//        &__form
+//            padding: 10px
+//
+//.form
+//    position: relative
+//    background: #fff
+//    &__inputs
+//        display: flex
+//        flex-direction: column
+//        align-items: flex-end
+//    &__input
+//        width: 220px
+//    &__lbl
+//        margin-left: 5px
+//        margin-right: 5px
+//    &__in-name, &__in-mail, &__in-pass
+//        margin: 5px 0
+//    &__checkpass
+//        display: flex
+//        justify-content: center
+//        align-items: center
+//    &__btn
+//        display: flex
+//        justify-content: flex-end
+//
+//
+//.del
 //    display: none
-.del
-    display: none
-//input[name="tabs"]:checked + label
+//
 input[name="tabs"]
     display: none
-
+//

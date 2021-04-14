@@ -24,7 +24,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
 
@@ -101,26 +100,17 @@
         width: 100%;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
     }
-
-    /*table caption{*/
-    /*    display: block;*/
-    /*}*/
     table td {
-        /*text-align: center;*/
         padding: 5px;
-        transition: all .3s
-    ;
+        transition: all .3s;
     }
-
     table thead,
     table tr:nth-child(even) {
         background: #ccc;
     }
-
     table td:not(:last-child) {
         border-right: 1px solid;
     }
-
     .questionnaire-table__wrap {
         overflow-x: auto;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
@@ -130,7 +120,6 @@
     .questionnaire-table__cell-result{
         cursor: pointer;
     }
-
     .questionnaire-table__cell-title:hover,
     .questionnaire-table__cell-edit:hover,
     .questionnaire-table__cell-result:hover{
@@ -141,6 +130,6 @@
         justify-content: space-between;
     }
     .questionnaire-table__header span{
-        font-weight: 700;   
+        font-weight: 700;
     }
 </style>

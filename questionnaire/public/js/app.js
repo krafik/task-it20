@@ -2017,13 +2017,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-forms",
   data: function data() {
     return {
-      name: '',
-      loginChecked: true
+      name: '' // loginCheck:true
+
     };
   }
 });
@@ -2121,7 +2120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "v-quest-all",
   data: function data() {
@@ -2146,6 +2144,65 @@ __webpack_require__.r(__webpack_exports__);
       user: 'ivan@tygoy.com'
     };
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/v-quest-page.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/v-quest-page.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "v-quest-page"
 });
 
 /***/ }),
@@ -6604,7 +6661,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable[data-v-70c12db8] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n\n/*table caption{*/\n/*    display: block;*/\n/*}*/\ntable td[data-v-70c12db8] {\n    /*text-align: center;*/\n    padding: 5px;\n    transition: all .3s\n;\n}\ntable thead[data-v-70c12db8],\ntable tr[data-v-70c12db8]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-70c12db8]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-70c12db8] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.questionnaire-table__cell-title[data-v-70c12db8],\n.questionnaire-table__cell-edit[data-v-70c12db8],\n.questionnaire-table__cell-result[data-v-70c12db8]{\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-70c12db8]:hover,\n.questionnaire-table__cell-edit[data-v-70c12db8]:hover,\n.questionnaire-table__cell-result[data-v-70c12db8]:hover{\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-70c12db8]{\n    display: flex;\n    justify-content: space-between;\n}\n.questionnaire-table__header span[data-v-70c12db8]{\n    font-weight: 700;\n}\n", ""]);
+exports.push([module.i, "\ntable[data-v-70c12db8] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\ntable td[data-v-70c12db8] {\n    padding: 5px;\n    transition: all .3s;\n}\ntable thead[data-v-70c12db8],\ntable tr[data-v-70c12db8]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-70c12db8]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-70c12db8] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.questionnaire-table__cell-title[data-v-70c12db8],\n.questionnaire-table__cell-edit[data-v-70c12db8],\n.questionnaire-table__cell-result[data-v-70c12db8]{\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-70c12db8]:hover,\n.questionnaire-table__cell-edit[data-v-70c12db8]:hover,\n.questionnaire-table__cell-result[data-v-70c12db8]:hover{\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-70c12db8]{\n    display: flex;\n    justify-content: space-between;\n}\n.questionnaire-table__header span[data-v-70c12db8]{\n    font-weight: 700;\n}\n", ""]);
 
 // exports
 
@@ -38456,112 +38513,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "app-forms app__forms" }, [
-    _c("div", { staticClass: "app-forms__wrapper" }, [
-      _c("div", { staticClass: "app-forms__p-form-lbls" }, [
-        _c(
-          "label",
-          {
-            staticClass: "app-forms__p-form ",
-            attrs: { for: "login", title: "Войти" }
-          },
-          [
-            _c("input", {
-              attrs: { name: "tabs", id: "login", type: "radio", checked: "" },
-              on: {
-                click: function($event) {
-                  _vm.loginChecked = !_vm.loginChecked
-                }
-              }
-            }),
-            _vm._v("Войти\n            ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "app-forms__p-form",
-            attrs: { for: "registration", title: "Регистрация" }
-          },
-          [
-            _c("input", {
-              attrs: { name: "tabs", id: "registration", type: "radio" },
-              on: {
-                click: function($event) {
-                  _vm.loginChecked = !_vm.loginChecked
-                }
-              }
-            }),
-            _vm._v("Регистрация\n            ")
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.loginChecked
-        ? _c(
+  return _c(
+    "section",
+    { staticClass: "app__section app__guest-form guest-form " },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "app__form-wrapper guest-form__wrapper",
+          attrs: { id: "forms" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
             "form",
             {
-              staticClass: "form app-forms__form app-forms__form_active",
+              staticClass: "form form__hide active guest-form__form ",
               attrs: { action: "#" }
             },
             [
-              _c("div", { staticClass: "form__inputs" }, [
-                _c("div", { staticClass: "form__in-mail" }, [
-                  _c(
-                    "label",
-                    { staticClass: "form__lbl", attrs: { for: "" } },
-                    [_vm._v("E-mail")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.name,
-                        expression: "name"
-                      }
-                    ],
-                    staticClass: "form__input",
-                    attrs: { type: "email" },
-                    domProps: { value: _vm.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.name = $event.target.value
-                      }
-                    }
-                  })
-                ]),
+              _c("div", { staticClass: "form__input-w form__in-mail" }, [
+                _c("span", { staticClass: "form__lbl" }, [_vm._v("E-mail")]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form__input",
+                  attrs: { type: "email" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
               _vm._m(1),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3)
             ]
-          )
-        : _c(
-            "form",
-            { staticClass: "form app-forms__form", attrs: { action: "#" } },
-            [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)]
-          )
-    ])
-  ])
+          ),
+          _vm._v(" "),
+          _vm._m(4)
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__in-pass" }, [
-      _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-        _vm._v("Пароль")
-      ]),
+    return _c("div", { staticClass: "guest-form__lbls" }, [
+      _c(
+        "label",
+        {
+          staticClass: "guest-form__p-form active  ",
+          attrs: { title: "Войти" }
+        },
+        [_vm._v("\n                    Войти\n                ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "label",
+        { staticClass: "guest-form__p-form", attrs: { title: "Регистрация" } },
+        [_vm._v("\n                    Регистрация\n")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__input-w form__in-pass" }, [
+      _c("span", { staticClass: "form__lbl" }, [_vm._v("Пароль")]),
       _vm._v(" "),
       _c("input", { staticClass: "form__input", attrs: { type: "text" } })
     ])
@@ -38570,14 +38609,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__checkpass" }, [
+    return _c("div", { staticClass: "form__input-w form__checkpass" }, [
       _c("input", {
         staticClass: "form__checkbox",
-        attrs: { type: "checkbox" }
+        attrs: { id: "checkpass", type: "checkbox" }
       }),
       _vm._v(" "),
-      _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-        _vm._v("Показать пароль")
+      _c(
+        "label",
+        { staticClass: "form__lbl-check", attrs: { for: "checkpass" } },
+        [_vm._v("Показать пароль")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__input-w form-btn form__btn" }, [
+      _c("button", { staticClass: "form-btn__btn-send" }, [
+        _vm._v("\n                        Войти\n                    ")
       ])
     ])
   },
@@ -38585,66 +38636,60 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__btn" }, [
-      _c("button", { staticClass: "form__btn-send" }, [
-        _vm._v("\n                    Войти\n                ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__inputs" }, [
-      _c("div", { staticClass: "form__in-name" }, [
-        _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-          _vm._v("Имя")
+    return _c(
+      "form",
+      {
+        staticClass: "form form__hide guest-form__form",
+        attrs: { action: "#" }
+      },
+      [
+        _c("div", { staticClass: "form__input-w form__in-name" }, [
+          _c("label", { staticClass: "form__lbl", attrs: { for: "name" } }, [
+            _vm._v("Имя")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form__input",
+            attrs: { id: "name", type: "text" }
+          })
         ]),
         _vm._v(" "),
-        _c("input", { staticClass: "form__input", attrs: { type: "text" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form__in-mail" }, [
-        _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-          _vm._v("E-mail")
+        _c("div", { staticClass: "form__input-w form__in-mail" }, [
+          _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
+            _vm._v("E-mail")
+          ]),
+          _vm._v(" "),
+          _c("input", { staticClass: "form__input", attrs: { type: "email" } })
         ]),
         _vm._v(" "),
-        _c("input", { staticClass: "form__input", attrs: { type: "email" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form__in-pass" }, [
-        _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-          _vm._v("Пароль")
+        _c("div", { staticClass: "form__input-w form__in-pass" }, [
+          _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
+            _vm._v("Пароль")
+          ]),
+          _vm._v(" "),
+          _c("input", { staticClass: "form__input", attrs: { type: "text" } })
         ]),
         _vm._v(" "),
-        _c("input", { staticClass: "form__input", attrs: { type: "text" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__checkpass" }, [
-      _c("input", {
-        staticClass: "form__checkbox",
-        attrs: { type: "checkbox" }
-      }),
-      _vm._v(" "),
-      _c("label", { staticClass: "form__lbl", attrs: { for: "" } }, [
-        _vm._v("Показать пароль")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__btn" }, [
-      _c("button", { staticClass: "form__btn-send" }, [
-        _vm._v("\n                    Регистрация\n                ")
-      ])
-    ])
+        _c("div", { staticClass: "form__input-w form__checkpass" }, [
+          _c("input", {
+            staticClass: "form__checkbox",
+            attrs: { type: "checkbox" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "form__lbl-check", attrs: { for: "" } }, [
+            _vm._v("Показать пароль")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form__input-w form-btn form__btn" }, [
+          _c("button", { staticClass: "form-btn__btn-send" }, [
+            _vm._v(
+              "\n                        Регистрация\n                    "
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -38779,6 +38824,131 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("input", { attrs: { type: "checkbox" } })])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      { staticClass: "app__section app__quest-form quest-page" },
+      [
+        _c("div", { staticClass: "app__form-wrapper quest-page__wrapper" }, [
+          _c(
+            "form",
+            {
+              staticClass: "form quest-form guest-page__form",
+              attrs: { action: "#" }
+            },
+            [
+              _c("div", { staticClass: "form__input-w quest-form__inp-w " }, [
+                _c("span", [_vm._v("ФИО")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form__input-q",
+                  attrs: { type: "text" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form__input-w quest-form__inp-w" }, [
+                _c("span", [_vm._v("Телефон")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form__input-q",
+                  attrs: { type: "tel" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form__input-w quest-form__inp-w" }, [
+                _c("span", [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form__input-q",
+                  attrs: { type: "email" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form__input-w quest-form__inp-w" }, [
+                _c("span", [_vm._v("Вид оборудования")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form__input-q",
+                  attrs: { type: "text" }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form__input-w quest-form__inp-w-check" },
+                [
+                  _c("input", { attrs: { id: "checktel", type: "checkbox" } }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "checktel" } }, [
+                    _vm._v("Перезвоните мне")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form__input-w quest-form__inp-w" }, [
+                _c("span", { attrs: { for: "" } }, [
+                  _vm._v("Ваши комментарии")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  staticClass: "form__input-q",
+                  attrs: { name: "comments", id: "", cols: "20", rows: "3" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form__input-w quest-form__footer" }, [
+                _c("div", { staticClass: "captcha quest-form__captcha" }, [
+                  _c("span", { staticClass: "captcha__text" }, [
+                    _vm._v("Число с картинки:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "captcha__img",
+                    attrs: { type: "text" }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "captcha__inp",
+                    attrs: { type: "text" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("button", [_vm._v("Отправить")])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -50964,6 +51134,8 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+window.JQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50978,6 +51150,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('v-header', __webpack_require__(/*! ./components/v-header.vue */ "./resources/js/components/v-header.vue")["default"]);
 Vue.component('v-forms', __webpack_require__(/*! ./components/v-forms.vue */ "./resources/js/components/v-forms.vue")["default"]);
 Vue.component('v-quest-all', __webpack_require__(/*! ./components/v-quest-all.vue */ "./resources/js/components/v-quest-all.vue")["default"]);
+Vue.component('v-quest-page', __webpack_require__(/*! ./components/v-quest-page.vue */ "./resources/js/components/v-quest-page.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50986,6 +51159,14 @@ Vue.component('v-quest-all', __webpack_require__(/*! ./components/v-quest-all.vu
 
 var app = new Vue({
   el: '#app'
+});
+$(document).ready(function () {
+  $('#forms').on('click', '.guest-form__p-form', function () {
+    $('#forms').find('.active').removeClass('active');
+    $(this).addClass('active');
+    console.log($(this).index());
+    $('.form__hide').eq($(this).index()).addClass('active');
+  });
 });
 
 /***/ }),
@@ -51255,6 +51436,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_all_vue_vue_type_template_id_70c12db8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_all_vue_vue_type_template_id_70c12db8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/v-quest-page.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/v-quest-page.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true& */ "./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true&");
+/* harmony import */ var _v_quest_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v-quest-page.vue?vue&type=script&lang=js& */ "./resources/js/components/v-quest-page.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _v_quest_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "120e24c8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/v-quest-page.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/v-quest-page.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/v-quest-page.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./v-quest-page.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/v-quest-page.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/v-quest-page.vue?vue&type=template&id=120e24c8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_quest_page_vue_vue_type_template_id_120e24c8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

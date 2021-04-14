@@ -17,69 +17,49 @@ label {
   margin-bottom: 0;
 }
 
-.app__navigate {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app__forms {
+.app__section {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.app-forms {
-  height: 100vh;
+.app__guest-form,
+.app__quest-form {
+  height: 500px;
+  margin: 5px 0;
 }
 
-.app-forms__wrapper {
-  width: 320px;
-  padding: 5px;
+.app__form-wrapper {
+  padding: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.app-forms__p-form {
-  width: 120px;
-  text-align: center;
-  display: inline-block;
-  border-bottom: none;
-  padding: 15px;
-  margin-bottom: -1px;
-  cursor: pointer;
-}
+/*all-forms*/
 
-.app-forms__p-form_active {
-  background-color: #fff;
-}
-
-.app-forms__form {
+.form {
+  background: #fff;
   padding: 10px;
 }
 
-.form {
-  position: relative;
-  background: #fff;
+.form__hide {
+  display: none;
 }
 
-.form__inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.form.active {
+  display: block;
 }
 
-.form__input {
-  width: 220px;
-}
-
-.form__lbl {
-  margin-left: 5px;
-  margin-right: 5px;
+.form__input-w {
+  padding: 5px 0;
 }
 
 .form__in-name,
 .form__in-mail,
-.form__in-pass {
-  margin: 5px 0;
+.form__in-pass,
+.form__btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .form__checkpass {
@@ -88,14 +68,93 @@ label {
   align-items: center;
 }
 
-.form__btn {
-  display: flex;
-  justify-content: flex-end;
+.form__lbl {
+  margin-right: 10px;
 }
 
-.del {
-  display: none;
+.form__lbl-check {
+  margin-left: 10px;
 }
+
+.form__input {
+  width: 200px;
+}
+
+.form__input-q {
+  width: 320px;
+}
+
+.form-btn__btn-send {
+  border-radius: 3px;
+  width: 110px;
+}
+
+/*end all-forms*/
+
+/*guest-form*/
+
+.guest-form__wrapper {
+  width: 300px;
+}
+
+.guest-form__lbls {
+  display: flex;
+}
+
+.guest-form__p-form {
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.guest-form__p-form.active {
+  background: #fff;
+  color: #181818;
+}
+
+/*end guest-form*/
+
+/*quest-page*/
+
+.quest-page__wrapper {
+  width: 500px;
+}
+
+.quest-form__inp-w {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.quest-form__inp-w-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quest-form__inp-w-check label {
+  margin: 0 40px 0 10px;
+}
+
+.quest-form__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.captcha__img,
+.captcha__inp {
+  width: 60px;
+}
+
+.captcha__inp {
+  margin: 0 5px;
+}
+
+.captcha__text {
+  margin-right: 15px;
+}
+
+/*end quest-page*/
 
 input[name=tabs] {
   display: none;

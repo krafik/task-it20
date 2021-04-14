@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.$ = require('jquery')
+window.JQuery = require('jquery')
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,6 +26,7 @@ window.Vue = require('vue');
 Vue.component('v-header', require('./components/v-header.vue').default);
 Vue.component('v-forms', require('./components/v-forms.vue').default);
 Vue.component('v-quest-all', require('./components/v-quest-all.vue').default);
+Vue.component('v-quest-page', require('./components/v-quest-page.vue').default);
 
 
 /**
@@ -34,3 +38,13 @@ Vue.component('v-quest-all', require('./components/v-quest-all.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
+
+$(document).ready(function () {
+    $('#forms').on('click', '.guest-form__p-form', function () {
+        $('#forms').find('.active').removeClass('active');
+        $(this).addClass('active')
+        console.log($(this).index())
+        $('.form__hide').eq($(this).index()).addClass('active')
+    })
+})
