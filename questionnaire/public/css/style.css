@@ -24,14 +24,21 @@ label {
 }
 
 .app__guest-form,
-.app__quest-form {
-  height: 500px;
+.app__quest-form,
+.app__res-page,
+.app__questionnaire,
+.app__edit-quest {
+  min-height: 500px;
   margin: 5px 0;
 }
 
 .app__form-wrapper {
   padding: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.app__res-page {
+  margin: 10px 0px;
 }
 
 /*all-forms*/
@@ -51,6 +58,10 @@ label {
 
 .form__input-w {
   padding: 5px 0;
+}
+
+.form__input-bg:nth-child(even) {
+  background: #ccc;
 }
 
 .form__in-name,
@@ -82,6 +93,17 @@ label {
 
 .form__input-q {
   width: 320px;
+}
+
+.form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.form__header-col {
+  height: 100%;
 }
 
 .form-btn__btn-send {
@@ -136,6 +158,10 @@ label {
   margin: 0 40px 0 10px;
 }
 
+.quest-form__label {
+  padding-left: 5px;
+}
+
 .quest-form__footer {
   display: flex;
   justify-content: space-between;
@@ -152,11 +178,127 @@ label {
 
 .captcha__text {
   margin-right: 15px;
+  padding-left: 5px;
 }
 
 /*end quest-page*/
 
-input[name=tabs] {
-  display: none;
+/*result page*/
+
+.res-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.res-page__wrapper {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+.res-page__table-wrap {
+  overflow-x: auto;
+}
+
+.res-page__text {
+  font-weight: 600;
+}
+
+.table__fcol,
+.table__scol {
+  width: 400px;
+}
+
+.table__fcol {
+  display: flex;
+}
+
+.table__scol {
+  border-left: 1px solid;
+}
+
+.table__ftext-col {
+  margin: 0 10px;
+}
+
+.table__vcell {
+  font-weight: 600;
+}
+
+.table tr:nth-child(even) {
+  background-color: #ccc;
+}
+
+.table__select {
+  width: 100%;
+}
+
+@media screen and (max-width: 991.98px) {
+  .res-page__wrapper {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .res-page__wrapper {
+    padding: 0;
+  }
+
+  .res-page__header {
+    padding: 5px 10px;
+  }
+
+  .table__fcol,
+  .table__scol {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .table__ftext-col {
+    margin: 0;
+  }
+
+  .table__scol {
+    border: none;
+  }
+
+  .table tr {
+    border-bottom: 1px solid;
+    margin: 5px 0;
+  }
+
+  .table td {
+    padding: 0 0.75rem;
+    border-top: none;
+  }
+}
+
+/*end result page*/
+
+/*edit page*/
+
+.edit-quest__title,
+.edit-quest__btns-change {
+  margin: 10px 0px;
+}
+
+.edit-quest__btns-save {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.edit-quest__btn {
+  border: 1px solid #181818;
+  padding: 5px;
+}
+
+.edit-quest__btn-save {
+  padding: 25px;
+  border: 1px solid #181818;
+  margin: 0 5px;
+}
+
+/*end edit-page*/
 

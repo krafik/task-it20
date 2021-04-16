@@ -74,9 +74,11 @@
             </div>
         </div>
     </nav>
-    <v-forms></v-forms>
-    <v-quest-page></v-quest-page>
-    <v-quest-all></v-quest-all>
+{{--    <v-forms></v-forms>--}}
+{{--    <v-quest-page></v-quest-page>--}}
+{{--    <v-quest-all></v-quest-all>--}}
+{{--    <v-res-page></v-res-page>--}}
+    <v-edit-page></v-edit-page>
 </div>
 {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 <script src="./js/app.js"></script>

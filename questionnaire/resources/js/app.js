@@ -27,6 +27,8 @@ Vue.component('v-header', require('./components/v-header.vue').default);
 Vue.component('v-forms', require('./components/v-forms.vue').default);
 Vue.component('v-quest-all', require('./components/v-quest-all.vue').default);
 Vue.component('v-quest-page', require('./components/v-quest-page.vue').default);
+Vue.component('v-res-page', require('./components/v-res-page.vue').default);
+Vue.component('v-edit-page', require('./components/v-edit-page.vue').default);
 
 
 /**
@@ -44,7 +46,6 @@ $(document).ready(function () {
     $('#forms').on('click', '.guest-form__p-form', function () {
         $('#forms').find('.active').removeClass('active');
         $(this).addClass('active')
-        console.log($(this).index())
         $('.form__hide').eq($(this).index()).addClass('active')
     })
 })

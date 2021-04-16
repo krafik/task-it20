@@ -16,12 +16,14 @@ label
         display: flex
         justify-content: center
         align-items: center
-    &__guest-form, &__quest-form
-        height: 500px //100vh
+    &__guest-form, &__quest-form, &__res-page, &__questionnaire, &__edit-quest
+        min-height: 500px //100vh
         margin: 5px 0
     &__form-wrapper
         padding: 10px
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5)
+    &__res-page
+        margin: 10px 0px
 
 /*all-forms*/
 
@@ -34,6 +36,8 @@ label
         display: block
     &__input-w
         padding: 5px 0
+    &__input-bg:nth-child(even)
+        background: #ccc
     &__in-name,&__in-mail, &__in-pass, &__btn
         display: flex
         justify-content: flex-end
@@ -50,6 +54,13 @@ label
         width: 200px
         &-q
             width: 320px
+    &__header
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 90px
+        &-col
+            height: 100%
 
 
 .form-btn
@@ -94,6 +105,8 @@ label
                     //margin-left: 25px
                 & label
                     margin: 0 40px 0 10px
+        &__label
+            padding-left: 5px
         &__footer
             display: flex
             justify-content: space-between
@@ -105,62 +118,90 @@ label
         margin: 0 5px
     &__text
         margin-right: 15px
+        padding-left: 5px
 /*end quest-page*/
 
-//.app
-//    &__navigate
-//        display: flex
-//        justify-content: space-between
-//        align-items: center
-//    &__forms
-//        display: flex
-//        justify-content: center
-//        align-items: center
-//    &-forms
-//        height: 100vh
-//        &__wrapper
-//            width: 320px
-//            padding: 5px
-//        &__p-form
-//            width: 120px
-//            text-align: center
-//            display: inline-block
-//            border-bottom: none
-//            padding: 15px
-//            margin-bottom: -1px
-//            cursor: pointer
-//
-//            &_active
-//                background-color: #fff
-//        &__form
-//            padding: 10px
-//
-//.form
-//    position: relative
-//    background: #fff
-//    &__inputs
-//        display: flex
-//        flex-direction: column
-//        align-items: flex-end
-//    &__input
-//        width: 220px
-//    &__lbl
-//        margin-left: 5px
-//        margin-right: 5px
-//    &__in-name, &__in-mail, &__in-pass
-//        margin: 5px 0
-//    &__checkpass
-//        display: flex
-//        justify-content: center
-//        align-items: center
-//    &__btn
-//        display: flex
-//        justify-content: flex-end
-//
-//
-//.del
+
+
+/*result page*/
+.res-page
+    &__header
+        display: flex
+        justify-content: space-between
+        align-items: center
+    &__wrapper
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5)
+        padding: 10px
+    &__table-wrap
+        overflow-x: auto
+    &__text
+        font-weight: 600
+
+
+.table
+    &__fcol, &__scol
+        width: 400px
+    &__fcol
+        display: flex
+    &__scol
+        border-left: 1px solid
+    &__ftext-col
+        margin: 0 10px
+    &__vcell
+        font-weight: 600
+    & tr:nth-child(even)
+        background-color: #ccc
+    &__select
+        width: 100%
+
+
+
+
+@media screen and (max-width: 991.98px)
+    .res-page__wrapper
+        padding: 20px
+
+@media screen and (max-width: 767.98px)
+    .res-page__wrapper
+        padding: 0
+    .res-page__header
+        padding: 5px 10px
+    .table
+        &__fcol, &__scol
+            display: flex
+            flex-direction: column
+            width: 100%
+        &__ftext-col
+            margin: 0
+        &__scol
+            border: none
+        & tr
+            border-bottom: 1px solid
+            margin: 5px 0
+        & td
+            padding: 0 0.75rem
+            border-top: none
+/*end result page*/
+
+//input[name="tabs"]
 //    display: none
-//
-input[name="tabs"]
-    display: none
-//
+
+
+/*edit page*/
+
+.edit-quest
+    &__title, &__btns-change
+        margin: 10px 0px
+    &__btns-save
+        height: 100%
+        display: flex
+        align-items: center
+    &__btn
+        border: 1px solid #181818
+        padding: 5px
+        &-save
+            padding: 25px
+            border: 1px solid #181818
+            margin: 0 5px
+
+/*end edit-page*/

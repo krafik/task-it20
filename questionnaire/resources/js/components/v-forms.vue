@@ -32,21 +32,21 @@
             </form>
             <form action="#"  class="form form__hide guest-form__form">
                     <div class="form__input-w form__in-name">
-                        <label for="name" class="form__lbl">Имя</label>
+                        <span class="form__lbl">Имя</span>
                         <input id="name" type="text" class="form__input">
                     </div>
                     <div class="form__input-w form__in-mail">
-                        <label for="" class="form__lbl">E-mail</label>
+                        <span class="form__lbl">E-mail</span>
                         <input type="email" class="form__input">
                     </div>
                     <div class="form__input-w form__in-pass">
-                        <label for="" class="form__lbl">Пароль</label>
+                        <span class="form__lbl">Пароль</span>
                         <input type="text" class="form__input">
                     </div>
 
                 <div class="form__input-w form__checkpass">
-                    <input type="checkbox" class="form__checkbox">
-                    <label for="" class="form__lbl-check">Показать пароль</label>
+                    <input id="checkpass2" type="checkbox" class="form__checkbox">
+                    <label for="checkpass2" class="form__lbl-check">Показать пароль</label>
                 </div>
                 <div class="form__input-w form-btn form__btn">
                     <button class="form-btn__btn-send">

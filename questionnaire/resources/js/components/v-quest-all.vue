@@ -1,5 +1,5 @@
 <template>
-    <section class="questionnaire-table app__questionnaire">
+    <section class="app__section questionnaire-table app__questionnaire">
         <div class="container">
             <div class="questionnaire-table__wrapper">
                 <div class="questionnaire-table__header">
@@ -27,36 +27,6 @@
             </div>
         </div>
 
-        <!--  <table class="advantage-table">
-              <thead>
-              <tr>
-                  <th class="advantage-table__cell advantage-table__title"></th>
-                  <th class="advantage-table__cell advantage-table__title advantage-table__cell_active">Advogrand</th>
-                  <th class="advantage-table__cell advantage-table__cell_others advantage-table__cell_others-top advantage-table__title">
-                      Юридические компании
-                  </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                  <td class="advantage-table__cell advantage-table__info">Дополнительные услуги</td>
-                  <td class="advantage-table__cell advantage-table__cell_active">Входят в абонемент</td>
-                  <td class="advantage-table__cell advantage-table__cell_others">Оплачиваются отдельно</td>
-              </tr>
-              <tr>
-                  <td class="advantage-table__cell advantage-table__info">Время работы</td>
-                  <td class="advantage-table__cell advantage-table__cell_active">Круглосуточно</td>
-                  <td class="advantage-table__cell advantage-table__cell_others">С 9:00 до 18:00</td>
-              </tr>
-              <tr>
-                  <td class="advantage-table__cell advantage-table__info">Оплата</td>
-                  <td class="advantage-table__cell advantage-table__cell_active">Всего 1 раз в год</td>
-                  <td class="advantage-table__cell advantage-table__cell_others advantage-table__cell_others-bottom">
-                      Каждый раз при обращении
-                  </td>
-              </tr>
-              </tbody>
-          </table>-->
     </section>
 </template>
 
