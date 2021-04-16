@@ -34,13 +34,14 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
+{{--                <ul class="navbar-nav mr-auto">--}}
 
-                </ul>
-
+{{--                </ul>--}}
+                <v-header></v-header>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -74,11 +75,14 @@
             </div>
         </div>
     </nav>
+{{--                        <v-header></v-header>--}}
 {{--    <v-forms></v-forms>--}}
 {{--    <v-quest-page></v-quest-page>--}}
 {{--    <v-quest-all></v-quest-all>--}}
 {{--    <v-res-page></v-res-page>--}}
-    <v-edit-page></v-edit-page>
+{{--    <v-edit-page></v-edit-page>--}}
+
+    <router-view></router-view>
 </div>
 {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 <script src="./js/app.js"></script>
