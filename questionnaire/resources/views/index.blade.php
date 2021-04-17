@@ -37,7 +37,7 @@
 {{--                <ul class="navbar-nav mr-auto">--}}
 
 {{--                </ul>--}}
-                <v-header></v-header>
+{{--                <v-header></v-header>--}}
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->

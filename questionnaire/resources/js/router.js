@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 Vue.use(vueRouter);
 
-import Login from './views/v-forms'
+import Login from './views/v-forms.vue'
 import Index from './views/v-quest-all'
 import Edit from './views/v-edit-page'
 import Form from './views/v-quest-page'

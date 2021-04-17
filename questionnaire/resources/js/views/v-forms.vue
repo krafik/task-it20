@@ -14,15 +14,16 @@
             <form action="#"  class="form form__hide active guest-form__form ">
                     <div class="form__input-w form__in-mail">
                         <span class="form__lbl">E-mail</span>
-                        <input v-model="name" type="email" class="form__input">
+                        <input v-model.trim="emailLogin" type="email"  class="form__input">
                     </div>
                     <div class="form__input-w form__in-pass">
-                        <span  class="form__lbl">Пароль</span>
-                        <input type="text" class="form__input">
+                        <span class="form__lbl">Пароль</span>
+                        <input v-model="passLogin"  type="text" class="form__input">
+
                     </div>
                 <div class="form__input-w form__checkpass">
                     <input id="checkpass" type="checkbox" class="form__checkbox">
-                    <label for="checkpass" class="form__lbl-check">Показать пароль</label>
+                    <label for="checkpass" class="form__lbl-check">Скрывать пароль</label>
                 </div>
                 <div class="form__input-w form-btn form__btn">
                     <button class="form-btn__btn-send">
@@ -56,20 +57,26 @@
             </form>
         </div>
 
-
     </section>
 </template>
 
 <script>
+
+
     export default {
         name: "v-forms",
         data(){
             return{
-                name:'',
+                emailLogin:'',
+                passLogin: '',
+                nameRegister: '',
+                emailRegister:'',
+                passRegister: ''
                 // loginCheck:true
 
             }
-        }
+        },
+
     }
 </script>
 

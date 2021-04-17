@@ -5,11 +5,14 @@
  */
 
 require('./bootstrap');
-
-window.Vue = require('vue');
+window.Vue = require('vue/dist/vue');
 
 window.$ = require('jquery')
 window.JQuery = require('jquery')
+
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,13 +25,9 @@ window.JQuery = require('jquery')
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('v-header', require('./components/v-header.vue').default);
-// Vue.component('v-forms', require('./components/v-forms.vue').default);
-// Vue.component('v-quest-all', require('./components/v-quest-all.vue').default);
-// Vue.component('v-quest-page', require('./components/v-quest-page.vue').default);
-// Vue.component('v-res-page', require('./components/v-res-page.vue').default);
-// Vue.component('v-edit-page', require('./components/v-edit-page.vue').default);
+
 
 
 /**
@@ -40,8 +39,9 @@ import router from './router';
 
 const app = new Vue({
     el: '#app',
-    router
-});
+    router,
+    // render: h => h(app)
+})
 
 
 $(document).ready(function () {
@@ -50,4 +50,6 @@ $(document).ready(function () {
         $(this).addClass('active')
         $('.form__hide').eq($(this).index()).addClass('active')
     })
+
+    
 })
