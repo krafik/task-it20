@@ -1,7 +1,7 @@
 import vueRouter from 'vue-router';
-import Vue from 'vue';
+// import Vue from 'vue';
 
-Vue.use(vueRouter);
+// Vue.use(vueRouter);
 
 import Login from './views/v-forms.vue'
 import Index from './views/v-quest-all'

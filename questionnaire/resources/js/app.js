@@ -51,5 +51,5 @@ $(document).ready(function () {
         $('.form__hide').eq($(this).index()).addClass('active')
     })
 
-    
+
 })

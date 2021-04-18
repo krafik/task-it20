@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');
-
+//Route::get('/{vue_capture?}', function () {
+//    return view('index');
+//})->where('vue_capture', '[\/\w\.-]*');
 
 Auth::routes();
 //
