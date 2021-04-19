@@ -1881,10 +1881,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1925,6 +1925,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "v-tr",
+  data: function data() {
+    return {
+      arr: []
+    };
+  },
+  props: {
+    // dataId:{
+    //     type: String,
+    //     default: "NULL"
+    // }
+    title: {
+      type: String
+    },
+    id: {
+      type: Number
+    },
+    label: {
+      type: String
+    },
+    value: {
+      type: Array,
+      "default": "NULL"
+    }
+  },
+  methods: {
+    checkTr: function checkTr(e) {
+      // console.log($("input[data-id]"))
+      $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
+      $('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false); // document.querySelectorAll ('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
+      // if (document.querySelectorAll ('input[data-id]:checked').length >= 1){
+      //     $("input[data-id]").filter(":not(':checked')").attr('disabled', true)
+      // let count = document.querySelectorAll('tr[data-select="select"]')
+      //     console.log($('input[type="checkbox"]:not(:checked)'))
+      //     $('input[data-id]:not(:checked)').each(function (i) {
+      // $(this).hover(function () {
+      //         alert('можно выбрать только одну строку');
+      // })
+      // $(this).prop('disable',true)
+      // })
+      // $("input[type=checkbox]").filter(":not(':checked')").on('click',()=>{return false})
+      // alert('можно выбрать только одну строку');
+      // $("input[type=checkbox]").filter(":not(':checked')")
+      // console.log($("input[data-id]").filter(":not(':checked')"))
+      // setTimeout(()=>{
+      // let count = document.querySelectorAll('tr[data-select="select"]')
+      // console.log(count)
+      // count[1].removeAttribute('data-select')
+      // }, 1000)
+      // let count = document.querySelectorAll('tr[data-select]')
+      // $(count[1]).removeAttr("data-select")
+      // $(e.target).closest("tr").attr("data-select") ? console.log('true'): console.log('false')
+      // $(e.target).closest("tr").removeAttr("data-select")
+      // }
+      // console.log(e.target.parentElement.parentElement);
+      // console.log($(this).closest('tr'))
+      // $(e.target).closest("tr").remove()
+      // $(e.target).closest("tr").attr('data-select', 'select')
+      // console.log(e.target); removeAttr("title")
+      // console.log($(e.target));
+      // e.target.parentElement.parentElement.setAttribute('data-select', 'select')
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_v_tr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/v-tr */ "./resources/js/components/v-tr.vue");
 //
 //
 //
@@ -1964,39 +2044,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-edit-page",
+  components: {
+    vTr: _components_v_tr__WEBPACK_IMPORTED_MODULE_0__.default
+  },
   data: function data() {
     return {
       quests: {
         title: 'Анкета №5',
         options: [{
           type: 'text',
+          option: 'Текст',
           label: 'Фио',
           request: false,
           validValue: ['Холодильники'],
           "default": ''
         }, {
           type: 'tel',
+          option: 'Телефон',
           label: 'Телефон',
           request: true,
           validValue: ['Микроволновки'],
           "default": ''
         }, {
-          type: 'text',
-          label: 'Телефон',
+          type: 'email',
+          option: 'Email',
+          label: 'Email',
+          request: true,
+          validValue: [''],
+          "default": ''
+        }, {
+          type: 'select',
+          option: 'Комбобокс',
+          label: 'Вид оборудования',
+          request: true,
+          validValue: [''],
+          "default": ''
+        }, {
+          type: 'checkbox',
+          option: 'Чекбокс',
+          label: 'Перезвоните мне',
           request: true,
           validValue: ['Микроволновки'],
           "default": ''
         }, {
-          type: 'text',
-          label: 'Телефон',
-          request: true,
-          validValue: ['Микроволновки'],
-          "default": ''
-        }, {
-          type: 'text',
-          label: 'Телефон',
+          type: 'textarea',
+          option: 'Абзац',
+          label: 'Ваши комментарии',
           request: true,
           validValue: ['Микроволновки'],
           "default": ''
@@ -2014,16 +2149,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addLine: function addLine() {
-      var tr = document.createElement('tr');
+      console.log('click');
+      var tr = document.createElement("tr"); // tr.innerHTML= "<vTr>";
+
       tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "                                    <option value=\"text\">Текс</option>\n" + "                                    <option value=\"tel\">Телефон</option>\n" + "                                    <option value=\"email\">e-mail</option>\n" + "                                    <option value=\"select\">Комбо-бокс</option>\n" + "                                    <option value=\"checkbox\">Чекбокс</option>\n" + "                                    <option value=\"textarea\">Абзац</option>\n" + "                                </select>\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"text\" :value=\"row.label\">\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"checkbox\" class=\"\">\n" + "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "\n" + "                                </select>\n" + "                            </td>";
       var table = document.querySelector('.table__body');
       table.append(tr);
     },
     deleteLine: function deleteLine() {
-      $('input[data-id]').each(function () {
-        $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none");
-      });
-      var check = document.querySelectorAll("input[data-id]"); // let check = document.querySelectorAll("input[data-id]");
+      // $('input[data-id]').each(function () {
+      //     $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
+      // })
+      $('tr[data-select]').remove(); // let check = document.querySelectorAll("input[data-id]");
+      // let check = document.querySelectorAll("input[data-id]");
       // check.forEach(function (item, i, check) {
       //         // if(item[i].checked){
       //         //     console.log(item[i] + 'is checked')
@@ -2037,6 +2175,12 @@ __webpack_require__.r(__webpack_exports__);
       // })
       // $('#checkpass').is(':checked') ? inp[0].type = 'password' : inp[0].type = 'text'
       // console.log(check);
+    },
+    up: function up() {
+      $('tr[data-select]').after($('tr[data-select]').prev());
+    },
+    down: function down() {
+      $('tr[data-select]').before($('tr[data-select]').next());
     }
   }
 });
@@ -38089,6 +38233,45 @@ component.options.__file = "resources/js/components/v-header.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/v-tr.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/v-tr.vue ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v-tr.vue?vue&type=template&id=cb2e6900&scoped=true& */ "./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true&");
+/* harmony import */ var _v_tr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v-tr.vue?vue&type=script&lang=js& */ "./resources/js/components/v-tr.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _v_tr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "cb2e6900",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/v-tr.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/v-edit-page.vue":
 /*!********************************************!*\
   !*** ./resources/js/views/v-edit-page.vue ***!
@@ -38302,6 +38485,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/v-tr.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/v-tr.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_tr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-tr.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_v_tr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/views/v-edit-page.vue?vue&type=script&lang=js&":
 /*!*********************************************************************!*\
   !*** ./resources/js/views/v-edit-page.vue?vue&type=script&lang=js& ***!
@@ -38395,6 +38594,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_header_vue_vue_type_template_id_3e583b0f_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_header_vue_vue_type_template_id_3e583b0f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-header.vue?vue&type=template&id=3e583b0f&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-header.vue?vue&type=template&id=3e583b0f&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_v_tr_vue_vue_type_template_id_cb2e6900_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./v-tr.vue?vue&type=template&id=cb2e6900&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true&");
 
 
 /***/ }),
@@ -38544,6 +38760,89 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/v-tr.vue?vue&type=template&id=cb2e6900&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", { staticClass: "table__row-body" }, [
+    _c("td", { staticClass: "table__checkbox" }, [
+      _c("input", {
+        attrs: { type: "checkbox", "data-id": _vm.id },
+        on: { click: _vm.checkTr }
+      })
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("td", { staticClass: "table__body-cell" }, [
+      _c("input", { attrs: { type: "text" }, domProps: { value: _vm.label } })
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("td", { staticClass: "table__body-cell" }, [
+      _c("input", { attrs: { type: "text" }, domProps: { value: _vm.value } })
+    ]),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "table__body-cell" }, [
+      _c("select", { staticClass: "table__select", attrs: { name: "" } }, [
+        _c("option", { attrs: { value: "text" } }, [_vm._v("Текс")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "tel" } }, [_vm._v("Телефон")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "email" } }, [_vm._v("e-mail")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "select" } }, [_vm._v("Комбо-бокс")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "checkbox" } }, [_vm._v("Чекбокс")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "textarea" } }, [_vm._v("Абзац")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "table__body-cell" }, [
+      _c("input", { attrs: { type: "checkbox" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "table__body-cell" }, [
+      _c("select", { staticClass: "table__select", attrs: { name: "" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=template&id=192e962c&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/v-edit-page.vue?vue&type=template&id=192e962c&scoped=true& ***!
@@ -38606,13 +38905,31 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "a",
-                    { staticClass: "edit-quest__btn", attrs: { href: "#" } },
+                    {
+                      staticClass: "edit-quest__btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.up($event)
+                        }
+                      }
+                    },
                     [_vm._v("Вверх")]
                   ),
                   _vm._v(" "),
                   _c(
                     "a",
-                    { staticClass: "edit-quest__btn", attrs: { href: "#" } },
+                    {
+                      staticClass: "edit-quest__btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.down($event)
+                        }
+                      }
+                    },
                     [_vm._v("Вниз")]
                   )
                 ])
@@ -38629,35 +38946,17 @@ var render = function() {
                   "tbody",
                   { staticClass: "table__body" },
                   _vm._l(_vm.quests.options, function(row, index) {
-                    return _c("tr", { staticClass: "table__row-body" }, [
-                      _c("td", { staticClass: "table__checkbox" }, [
-                        _c("input", {
-                          attrs: { type: "checkbox", "data-id": index }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(3, true),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "table__body-cell" }, [
-                        _c("input", {
-                          attrs: { type: "text" },
-                          domProps: { value: row.label }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(4, true),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "table__body-cell" }, [
-                        _c("input", {
-                          attrs: { type: "text" },
-                          domProps: { value: row.validValue }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(5, true)
-                    ])
+                    return _c("vTr", {
+                      key: row.id,
+                      attrs: {
+                        id: index,
+                        label: row.label,
+                        option: row.option,
+                        value: row.validValue
+                      }
+                    })
                   }),
-                  0
+                  1
                 )
               ])
             ])
@@ -38718,42 +39017,6 @@ var staticRenderFns = [
           _vm._v("По умолчанию")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table__body-cell" }, [
-      _c("select", { staticClass: "table__select", attrs: { name: "" } }, [
-        _c("option", { attrs: { value: "text" } }, [_vm._v("Текс")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "tel" } }, [_vm._v("Телефон")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "email" } }, [_vm._v("e-mail")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "select" } }, [_vm._v("Комбо-бокс")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "checkbox" } }, [_vm._v("Чекбокс")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "textarea" } }, [_vm._v("Абзац")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table__body-cell" }, [
-      _c("input", { attrs: { type: "checkbox" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table__body-cell" }, [
-      _c("select", { staticClass: "table__select", attrs: { name: "" } })
     ])
   }
 ]

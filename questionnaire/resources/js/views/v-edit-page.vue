@@ -11,8 +11,8 @@
                         <div class="edit-quest__btns-change">
                             <a href="#" @click.prevent="addLine" class="edit-quest__btn">Добавить поле</a>
                             <a href="#" @click.prevent="deleteLine" class="edit-quest__btn">Удалить поле</a>
-                            <a href="#" class="edit-quest__btn">Вверх</a>
-                            <a href="#" class="edit-quest__btn">Вниз</a>
+                            <a href="#" @click.prevent="up" class="edit-quest__btn">Вверх</a>
+                            <a href="#" @click.prevent="down" class="edit-quest__btn">Вниз</a>
                         </div>
                     </div>
                     <div class="form__header-col">
@@ -36,32 +36,38 @@
                         </tr>
                         </thead>
                         <tbody class="table__body">
-                        <tr v-for="(row, index) in quests.options" class="table__row-body">
-                            <td class="table__checkbox"><input type="checkbox" :data-id="index"></td>
-                            <td class="table__body-cell">
-                                <select name="" class="table__select">
-                                    <option value="text">Текс</option>
-                                    <option value="tel">Телефон</option>
-                                    <option value="email">e-mail</option>
-                                    <option value="select">Комбо-бокс</option>
-                                    <option value="checkbox">Чекбокс</option>
-                                    <option value="textarea">Абзац</option>
-                                </select>
-                            </td>
-                            <td class="table__body-cell">
-                                <input type="text" :value="row.label">
-                            </td>
-                            <td class="table__body-cell">
-                                <input type="checkbox" class="">
-                                <!--                                <input type="checkbox" v-else="row.request" class="">-->
-                            </td>
-                            <td class="table__body-cell"><input type="text" :value="row.validValue"></td>
-                            <td class="table__body-cell">
-                                <select name="" class="table__select">
+                        <vTr v-for="(row, index) in quests.options"
+                             :id="index"
+                             :label="row.label"
+                             :option="row.option"
+                             :value="row.validValue"
+                             :key="row.id"
+                        ></vTr>
+                        <!-- <tr v-for="(row, index) in quests.options" class="table__row-body">
+                             <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="index"></td>
+                             <td class="table__body-cell">
+                                 <select name="" class="table__select">
+                                     <option value="text">Текс</option>
+                                     <option value="tel">Телефон</option>
+                                     <option value="email">e-mail</option>
+                                     <option value="select">Комбо-бокс</option>
+                                     <option value="checkbox">Чекбокс</option>
+                                     <option value="textarea">Абзац</option>
+                                 </select>
+                             </td>
+                             <td class="table__body-cell">
+                                 <input type="text" :value="row.label">
+                             </td>
+                             <td class="table__body-cell">
+                                 <input type="checkbox" class="">
+                             </td>
+                             <td class="table__body-cell"><input type="text" :value="row.validValue"></td>
+                             <td class="table__body-cell">
+                                 <select name="" class="table__select">
 
-                                </select>
-                            </td>
-                        </tr>
+                                 </select>
+                             </td>
+                         </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -71,8 +77,13 @@
 </template>
 
 <script>
+    import vTr from '../components/v-tr'
+
     export default {
         name: "v-edit-page",
+        components: {
+            vTr
+        },
         data() {
             return {
                 quests: {
@@ -81,6 +92,7 @@
                         [
                             {
                                 type: 'text',
+                                option: 'Текст',
                                 label: 'Фио',
                                 request: false,
                                 validValue: ['Холодильники'],
@@ -88,28 +100,40 @@
                             },
                             {
                                 type: 'tel',
+                                option: 'Телефон',
                                 label: 'Телефон',
                                 request: true,
                                 validValue: ['Микроволновки'],
                                 default: ''
                             },
                             {
-                                type: 'text',
-                                label: 'Телефон',
+                                type: 'email',
+                                option: 'Email',
+                                label: 'Email',
+                                request: true,
+                                validValue: [''],
+                                default: ''
+                            },
+                            {
+                                type: 'select',
+                                option: 'Комбобокс',
+                                label: 'Вид оборудования',
+                                request: true,
+                                validValue: [''],
+                                default: ''
+                            },
+                            {
+                                type: 'checkbox',
+                                option: 'Чекбокс',
+                                label: 'Перезвоните мне',
                                 request: true,
                                 validValue: ['Микроволновки'],
                                 default: ''
                             },
                             {
-                                type: 'text',
-                                label: 'Телефон',
-                                request: true,
-                                validValue: ['Микроволновки'],
-                                default: ''
-                            },
-                            {
-                                type: 'text',
-                                label: 'Телефон',
+                                type: 'textarea',
+                                option: 'Абзац',
+                                label: 'Ваши комментарии',
                                 request: true,
                                 validValue: ['Микроволновки'],
                                 default: ''
@@ -130,7 +154,9 @@
         },
         methods: {
             addLine() {
-                let tr = document.createElement('tr');
+                console.log('click')
+                let tr = document.createElement("tr");
+                // tr.innerHTML= "<vTr>";
                 tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" +
                     "                            <td class=\"table__body-cell\">\n" +
                     "                                <select name=\"\" class=\"table__select\">\n" +
@@ -160,13 +186,11 @@
             },
             deleteLine() {
 
-                $('input[data-id]').each(function () {
-                    $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
-                })
-
-                let check = document.querySelectorAll("input[data-id]");
-
-
+                // $('input[data-id]').each(function () {
+                //     $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
+                // })
+                $('tr[data-select]').remove()
+                // let check = document.querySelectorAll("input[data-id]");
 
 
                 // let check = document.querySelectorAll("input[data-id]");
@@ -185,6 +209,12 @@
                 // })
                 // $('#checkpass').is(':checked') ? inp[0].type = 'password' : inp[0].type = 'text'
                 // console.log(check);
+            },
+            up() {
+                $('tr[data-select]').after($('tr[data-select]').prev());
+            },
+            down() {
+                $('tr[data-select]').before($('tr[data-select]').next());
             }
         }
     }
