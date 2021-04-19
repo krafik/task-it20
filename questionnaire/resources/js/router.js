@@ -23,8 +23,8 @@ const routes = [
         component: Edit
     },
     {
-        path: "/form",
-        component: Form
+        path: '/form/:id',
+        component: Form,
     },
     {
         path: "/result",

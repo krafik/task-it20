@@ -2012,6 +2012,14 @@ __webpack_require__.r(__webpack_exports__);
         textarea: 'Абзац'
       }]
     };
+  },
+  methods: {
+    addLine: function addLine() {
+      var tr = document.createElement('tr');
+      tr.innerHTML = "      <td class=\"table__body-cell\"><input type=\"checkbox\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "                                    <option value=\"text\">Текс</option>\n" + "                                    <option value=\"tel\">Телефон</option>\n" + "                                    <option value=\"email\">e-mail</option>\n" + "                                    <option value=\"select\">Комбо-бокс</option>\n" + "                                    <option value=\"checkbox\">Чекбокс</option>\n" + "                                    <option value=\"textarea\">Абзац</option>\n" + "                                </select>\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"text\" :value=\"row.label\">\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"checkbox\" class=\"\">\n" + "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "\n" + "                                </select>\n" + "                            </td>";
+      var table = document.querySelector('.table__body');
+      table.append(tr);
+    }
   }
 });
 
@@ -2129,6 +2137,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2161,29 +2171,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-quest-all",
   data: function data() {
     return {
-      allQuest: [{
-        title: 'Анкета 1 для покупки многокамерных холодильников',
-        res: 'результаты(5)',
-        time: '20.06.2010'
-      }, {
-        title: 'Анкета 2 для заказа микроволновых печек',
-        res: 'результаты(15)',
-        time: '20.06.2010'
-      }, {
-        title: 'Анкета 3 для заказа вообще непонятно чего',
-        res: ' Результаты (8)',
-        time: '20.06.2010'
-      }, {
-        title: 'Анкета 4 для продажи и заказа спиртного',
-        res: ' Результаты (35)',
-        time: '20.06.2010'
-      }],
-      user: 'ivan@tygoy.com'
+      quests: [],
+      user: 'ivan@tygoy.com',
+      time: '20.06.2010'
     };
+  },
+  mounted: function mounted() {
+    this.loadQuests(); // console.log(this.$route)
+  },
+  methods: {
+    loadQuests: function loadQuests() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quest').then(function (res) {
+        _this.quests = res.data; // console.log(this.quests);
+      });
+    }
   }
 });
 
@@ -2200,6 +2212,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2244,8 +2258,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "v-quest-page"
+  name: "v-quest-page",
+  data: function data() {
+    return {
+      quest: [],
+      title: 'some title' // notFound: false
+
+    };
+  },
+  mounted: function mounted() {
+    this.loadQuest(this.$route.params.id);
+  },
+  methods: {
+    loadQuest: function loadQuest(id) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/quest/".concat(this.$route.params.id)).then(function (res) {
+        _this.quest = res.data;
+      }); // axios.get('api/quest/'+id)
+      // .then(res=>{
+      //     this.quest = res.data;
+      //     console.log(this.quest)
+      // })
+      // .catch(err=>{
+      //     this.notFound = true
+      // })
+    }
+  }
 });
 
 /***/ }),
@@ -2474,7 +2516,7 @@ var routes = [{
   path: "/edit",
   component: _views_v_edit_page__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
-  path: "/form",
+  path: '/form/:id',
   component: _views_v_quest_page__WEBPACK_IMPORTED_MODULE_3__.default
 }, {
   path: "/result",
@@ -38502,20 +38544,61 @@ var render = function() {
           "form",
           { staticClass: "edit-quest__form form", attrs: { action: "#" } },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "form__header" }, [
+              _c("div", { staticClass: "form__header-col" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "edit-quest__btns-change" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "edit-quest__btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addLine($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Добавить поле")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    [_vm._v("Удалить поле")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    [_vm._v("Вверх")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    [_vm._v("Вниз")]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form__table" }, [
               _c("table", { staticClass: "table edit-quest__table" }, [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "tbody",
                   { staticClass: "table__body" },
                   _vm._l(_vm.quests.options, function(row, index) {
                     return _c("tr", { staticClass: "table__row-body" }, [
-                      _vm._m(2, true),
-                      _vm._v(" "),
                       _vm._m(3, true),
+                      _vm._v(" "),
+                      _vm._m(4, true),
                       _vm._v(" "),
                       _c("td", { staticClass: "table__body-cell" }, [
                         _c("input", {
@@ -38524,7 +38607,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(4, true),
+                      _vm._m(5, true),
                       _vm._v(" "),
                       _c("td", { staticClass: "table__body-cell" }, [
                         _c("input", {
@@ -38533,7 +38616,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(5, true)
+                      _vm._m(6, true)
                     ])
                   }),
                   0
@@ -38551,52 +38634,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__header" }, [
-      _c("div", { staticClass: "form__header-col" }, [
-        _c("div", { staticClass: "edit-quest__title" }, [
-          _c("span", { staticClass: "form__title" }, [_vm._v("Название: ")]),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "text", value: "Анкета 5" } })
+    return _c("div", { staticClass: "edit-quest__title" }, [
+      _c("span", { staticClass: "form__title" }, [_vm._v("Название: ")]),
+      _vm._v(" "),
+      _c("input", { attrs: { type: "text", value: "Анкета 5" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__header-col" }, [
+      _c("div", { staticClass: "edit-quest__btns-save" }, [
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+          _vm._v("Просмотр")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "edit-quest__btns-change" }, [
-          _c("a", { staticClass: "edit-quest__btn", attrs: { href: "" } }, [
-            _vm._v("Добавить поле")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "edit-quest__btn", attrs: { href: "" } }, [
-            _vm._v("Удалить поле")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "edit-quest__btn", attrs: { href: "" } }, [
-            _vm._v("Вверх")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "edit-quest__btn", attrs: { href: "" } }, [
-            _vm._v("Вниз")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form__header-col" }, [
-        _c("div", { staticClass: "edit-quest__btns-save" }, [
-          _c(
-            "a",
-            { staticClass: "edit-quest__btn-save", attrs: { href: "" } },
-            [_vm._v("Просмотр")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "edit-quest__btn-save", attrs: { href: "" } },
-            [_vm._v("Сохранить")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "edit-quest__btn-save", attrs: { href: "" } },
-            [_vm._v("Отменить")]
-          )
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+          _vm._v("Сохранить")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+          _vm._v("Отменить")
         ])
       ])
     ])
@@ -38928,9 +38987,9 @@ var render = function() {
           _c("div", { staticClass: "questionnaire-table__header" }, [
             _c("span", [
               _vm._v(
-                "\n                    Список анкет пользователя " +
+                "\n                        Список анкет пользователя " +
                   _vm._s(_vm.user) +
-                  "\n                "
+                  "\n                    "
               )
             ]),
             _vm._v(" "),
@@ -38947,14 +39006,20 @@ var render = function() {
               [
                 _c(
                   "tbody",
-                  _vm._l(_vm.allQuest, function(item) {
+                  _vm._l(_vm.quests, function(item) {
                     return _c("tr", [
                       _vm._m(1, true),
                       _vm._v(" "),
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-title" },
-                        [_vm._v(_vm._s(item.title))]
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(item.title) +
+                              "\n                            "
+                          )
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -38966,13 +39031,13 @@ var render = function() {
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-result" },
-                        [_vm._v(_vm._s(item.res))]
+                        [_vm._v("результаты(15)")]
                       ),
                       _vm._v(" "),
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-time" },
-                        [_vm._v(_vm._s(item.time))]
+                        [_vm._v(_vm._s(_vm.time))]
                       )
                     ])
                   }),
@@ -39030,7 +39095,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "app__section app__quest-form quest-page" },
+    [
+      _c("div", { staticClass: "app__form-wrapper quest-page__wrapper" }, [
+        _c(
+          "form",
+          {
+            staticClass: "form quest-form guest-page__form",
+            attrs: { action: "#" }
+          },
+          [
+            _vm._v(
+              "\n                title: " +
+                _vm._s(_vm.title) +
+                "\n                "
+            ),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6)
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -39038,143 +39137,109 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "section",
-      { staticClass: "app__section app__quest-form quest-page" },
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w " },
       [
-        _c("div", { staticClass: "app__form-wrapper quest-page__wrapper" }, [
-          _c(
-            "form",
-            {
-              staticClass: "form quest-form guest-page__form",
-              attrs: { action: "#" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "form__input-w form__input-bg quest-form__inp-w "
-                },
-                [
-                  _c("span", { staticClass: "quest-form__label" }, [
-                    _vm._v("ФИО")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form__input-q",
-                    attrs: { type: "text" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form__input-w form__input-bg quest-form__inp-w"
-                },
-                [
-                  _c("span", { staticClass: "quest-form__label" }, [
-                    _vm._v("Телефон")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form__input-q",
-                    attrs: { type: "tel" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form__input-w form__input-bg quest-form__inp-w"
-                },
-                [
-                  _c("span", { staticClass: "quest-form__label" }, [
-                    _vm._v("E-mail")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form__input-q",
-                    attrs: { type: "email" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form__input-w form__input-bg quest-form__inp-w"
-                },
-                [
-                  _c("span", { staticClass: "quest-form__label" }, [
-                    _vm._v("Вид оборудования")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form__input-q",
-                    attrs: { type: "text" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "form__input-w form__input-bg quest-form__inp-w-check"
-                },
-                [
-                  _c("input", { attrs: { id: "checktel", type: "checkbox" } }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "checktel" } }, [
-                    _vm._v("Перезвоните мне")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form__input-w form__input-bg quest-form__inp-w"
-                },
-                [
-                  _c(
-                    "span",
-                    { staticClass: "quest-form__label", attrs: { for: "" } },
-                    [_vm._v("Ваши комментарии")]
-                  ),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    staticClass: "form__input-q",
-                    attrs: { name: "comments", id: "", cols: "20", rows: "3" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form__input-w quest-form__footer" }, [
-                _c("div", { staticClass: "captcha quest-form__captcha" }, [
-                  _c("span", { staticClass: "captcha__text" }, [
-                    _vm._v("Число с картинки:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "captcha__img",
-                    attrs: { type: "text" }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "captcha__inp",
-                    attrs: { type: "text" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("button", [_vm._v("Отправить")])
-              ])
-            ]
-          )
-        ])
+        _c("span", { staticClass: "quest-form__label" }, [_vm._v("ФИО")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form__input-q", attrs: { type: "text" } })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w" },
+      [
+        _c("span", { staticClass: "quest-form__label" }, [_vm._v("Телефон")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form__input-q", attrs: { type: "tel" } })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w" },
+      [
+        _c("span", { staticClass: "quest-form__label" }, [_vm._v("E-mail")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form__input-q", attrs: { type: "email" } })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w" },
+      [
+        _c("span", { staticClass: "quest-form__label" }, [
+          _vm._v("Вид оборудования")
+        ]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form__input-q", attrs: { type: "text" } })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w-check" },
+      [
+        _c("input", { attrs: { id: "checktel", type: "checkbox" } }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "checktel" } }, [_vm._v("Перезвоните мне")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form__input-w form__input-bg quest-form__inp-w" },
+      [
+        _c("span", { staticClass: "quest-form__label", attrs: { for: "" } }, [
+          _vm._v("Ваши комментарии")
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form__input-q",
+          attrs: { name: "comments", id: "", cols: "20", rows: "3" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__input-w quest-form__footer" }, [
+      _c("div", { staticClass: "captcha quest-form__captcha" }, [
+        _c("span", { staticClass: "captcha__text" }, [
+          _vm._v("Число с картинки:")
+        ]),
+        _vm._v(" "),
+        _c("input", { staticClass: "captcha__img", attrs: { type: "text" } }),
+        _vm._v(" "),
+        _c("input", { staticClass: "captcha__inp", attrs: { type: "text" } })
+      ]),
+      _vm._v(" "),
+      _c("button", [_vm._v("Отправить")])
+    ])
   }
 ]
 render._withStripped = true

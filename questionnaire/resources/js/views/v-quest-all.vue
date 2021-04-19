@@ -14,12 +14,16 @@
                 <div class="questionnaire-table__wrap">
                     <table width="750px" border="1" class="questionnaire__table">
                         <tbody>
-                        <tr v-for="item in allQuest">
+                        <tr v-for="item in quests">
                             <td><input type="checkbox"></td>
-                            <td class="questionnaire-table__cell-title">{{item.title}}</td>
+                            <td class="questionnaire-table__cell-title">
+                            {{item.title}}
+                            </td>
                             <td class="questionnaire-table__cell-edit">Правка</td>
-                            <td class="questionnaire-table__cell-result">{{item.res}}</td>
-                            <td class="questionnaire-table__cell-time">{{item.time}}</td>
+<!--                            <td class="questionnaire-table__cell-result">{{item.res}}</td>-->
+                            <td class="questionnaire-table__cell-result">результаты(15)</td>
+<!--                            <td class="questionnaire-table__cell-time">{{item.time}}</td>-->
+                            <td class="questionnaire-table__cell-time">{{time}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -31,35 +35,25 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "v-quest-all",
-        data() {
-            return {
-                allQuest: [
-                    {
-                        title: 'Анкета 1 для покупки многокамерных холодильников',
-                        res: 'результаты(5)',
-                        time: '20.06.2010'
-                    },
-                    {
-                        title: 'Анкета 2 для заказа микроволновых печек',
-                        res: 'результаты(15)',
-                        time: '20.06.2010'
-                    },
-                    {
-                        title: 'Анкета 3 для заказа вообще непонятно чего',
-                        res: ' Результаты (8)',
-                        time: '20.06.2010'
-                    },
-                    {
-                        title: 'Анкета 4 для продажи и заказа спиртного',
-                        res: ' Результаты (35)',
-                        time: '20.06.2010'
-                    }
-                ],
-                user: 'ivan@tygoy.com'
-
-
+        data: ()=>({
+            quests: [],
+            user: 'ivan@tygoy.com',
+            time: '20.06.2010'
+        }),
+        mounted(){
+            this.loadQuests();
+            // console.log(this.$route)
+        },
+        methods:{
+            loadQuests(){
+                axios.get('/api/quest')
+                .then(res=>{
+                    this.quests = res.data;
+                    // console.log(this.quests);
+                })
             }
         }
     }

@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+//use App\Http\Controllers\QuestController;
+//use App\Http\Controllers\Api\v1\QuestController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Route::resource('Quests', 'QuestController');
+//Route::resource('quest', QuestController::class);
+
+//Route::resource('quests', \App\Http\Controllers\Api\v1\QuestController::class);
+//Route::group(['prefix' => '/v1', 'as' => 'api'], function (){
+//    Route::resource('quest', QuestController::class);
+//});
+
+Route::resource('quest', 'Api\v1\QuestController');

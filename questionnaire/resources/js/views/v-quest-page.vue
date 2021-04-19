@@ -2,6 +2,7 @@
     <section class="app__section app__quest-form quest-page">
         <div class="app__form-wrapper quest-page__wrapper">
             <form action="#" class="form quest-form guest-page__form">
+                title: {{title}}
                 <div class="form__input-w form__input-bg quest-form__inp-w ">
                     <span  class="quest-form__label">ФИО</span>
                     <input type="text" class="form__input-q">
@@ -38,14 +39,41 @@
                 </div>
             </form>
         </div>
-
+<!--<div v-else>not found</div>-->
     </section>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        name: "v-quest-page"
+        name: "v-quest-page",
+        data:()=>({
+            quest:[],
+            title: 'some title'
+            // notFound: false
+        }),
+        mounted(){
+            this.loadQuest(this.$route.params.id)
+        },
+        methods:{
+            loadQuest(id){
+                axios.get(`api/quest/${this.$route.params.id}`)
+                .then(res=>{
+                    this.quest = res.data
+                })
+                // axios.get('api/quest/'+id)
+                // .then(res=>{
+                //     this.quest = res.data;
+                //     console.log(this.quest)
+                // })
+                // .catch(err=>{
+                //     this.notFound = true
+                // })
+            }
+        }
     }
+
 </script>
 
 <style scoped>
