@@ -71,7 +71,7 @@ class QuestController extends Controller
      */
     public function show($id)
     {
-        return Questionary::findOrFail($id);
+//        return Questionary::findOrFail($id);
 
 
 //        $quests = QuestInfo::where('quest_id', '=', $id)->get();

@@ -10,16 +10,16 @@
                         </div>
                         <div class="edit-quest__btns-change">
                             <a href="#" @click.prevent="addLine" class="edit-quest__btn">Добавить поле</a>
-                            <a href="" class="edit-quest__btn">Удалить поле</a>
-                            <a href="" class="edit-quest__btn">Вверх</a>
-                            <a href="" class="edit-quest__btn">Вниз</a>
+                            <a href="#" @click.prevent="deleteLine" class="edit-quest__btn">Удалить поле</a>
+                            <a href="#" class="edit-quest__btn">Вверх</a>
+                            <a href="#" class="edit-quest__btn">Вниз</a>
                         </div>
                     </div>
                     <div class="form__header-col">
                         <div class="edit-quest__btns-save">
-                            <a href="" class="edit-quest__btn-save">Просмотр</a>
-                            <a href="" class="edit-quest__btn-save">Сохранить</a>
-                            <a href="" class="edit-quest__btn-save">Отменить</a>
+                            <a href="#" class="edit-quest__btn-save">Просмотр</a>
+                            <a href="#" class="edit-quest__btn-save">Сохранить</a>
+                            <a href="#" class="edit-quest__btn-save">Отменить</a>
                         </div>
                     </div>
                 </div>
@@ -36,10 +36,8 @@
                         </tr>
                         </thead>
                         <tbody class="table__body">
-
-
                         <tr v-for="(row, index) in quests.options" class="table__row-body">
-                            <td class="table__body-cell"><input type="checkbox"></td>
+                            <td class="table__checkbox"><input type="checkbox" :data-id="index"></td>
                             <td class="table__body-cell">
                                 <select name="" class="table__select">
                                     <option value="text">Текс</option>
@@ -131,9 +129,9 @@
 
         },
         methods: {
-            addLine(){
+            addLine() {
                 let tr = document.createElement('tr');
-                tr.innerHTML = "      <td class=\"table__body-cell\"><input type=\"checkbox\"></td>\n" +
+                tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" +
                     "                            <td class=\"table__body-cell\">\n" +
                     "                                <select name=\"\" class=\"table__select\">\n" +
                     "                                    <option value=\"text\">Текс</option>\n" +
@@ -160,7 +158,34 @@
                 let table = document.querySelector('.table__body');
                 table.append(tr);
             },
+            deleteLine() {
 
+                $('input[data-id]').each(function () {
+                    $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
+                })
+
+                let check = document.querySelectorAll("input[data-id]");
+
+
+
+
+                // let check = document.querySelectorAll("input[data-id]");
+                // check.forEach(function (item, i, check) {
+                //         // if(item[i].checked){
+                //         //     console.log(item[i] + 'is checked')
+                //         // }
+                //
+                //     console.log(item[i])
+                // })
+
+
+                //если инпут с любым дата id был выбран, тогда удаляем его родителя
+                // check.forEach(function (item, i, check) {
+                //     console.log();
+                // })
+                // $('#checkpass').is(':checked') ? inp[0].type = 'password' : inp[0].type = 'text'
+                // console.log(check);
+            }
         }
     }
 </script>

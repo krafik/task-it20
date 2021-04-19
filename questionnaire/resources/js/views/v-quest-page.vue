@@ -1,8 +1,8 @@
 <template>
     <section class="app__section app__quest-form quest-page">
         <div class="app__form-wrapper quest-page__wrapper">
-            <form action="#" class="form quest-form guest-page__form">
-                title: {{title}}
+            <form action="#" class="form quest-form quest-page__form">
+                title: {{quest.title}}
                 <div class="form__input-w form__input-bg quest-form__inp-w ">
                     <span  class="quest-form__label">ФИО</span>
                     <input type="text" class="form__input-q">
@@ -58,9 +58,10 @@
         },
         methods:{
             loadQuest(id){
-                axios.get(`api/quest/${this.$route.params.id}`)
+                axios.get(`api/quest/`+id)
                 .then(res=>{
                     this.quest = res.data
+                    console.log(res.data)
                 })
                 // axios.get('api/quest/'+id)
                 // .then(res=>{

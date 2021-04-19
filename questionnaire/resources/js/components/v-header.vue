@@ -25,11 +25,10 @@
                         title: 'Редакт',
                         href: '/edit',
                     },
-                    {
-                        title: 'Форма',
-                        href: '/form',
-                    }
-                    ,
+                    // {
+                    //     title: 'Форма',
+                    //     href: '/form',
+                    // },
                     {
                         title: 'Результаты',
                         href: '/result',

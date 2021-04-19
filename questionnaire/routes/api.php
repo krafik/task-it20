@@ -28,3 +28,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 Route::resource('quest', 'Api\v1\QuestController');
+Route::resource('result', 'Api\v1\ResController');

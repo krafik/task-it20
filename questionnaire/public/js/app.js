@@ -1867,10 +1867,11 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: 'Редакт',
         href: '/edit'
-      }, {
-        title: 'Форма',
-        href: '/form'
-      }, {
+      }, // {
+      //     title: 'Форма',
+      //     href: '/form',
+      // },
+      {
         title: 'Результаты',
         href: '/result'
       }]
@@ -1891,8 +1892,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -2016,9 +2015,28 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addLine: function addLine() {
       var tr = document.createElement('tr');
-      tr.innerHTML = "      <td class=\"table__body-cell\"><input type=\"checkbox\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "                                    <option value=\"text\">Текс</option>\n" + "                                    <option value=\"tel\">Телефон</option>\n" + "                                    <option value=\"email\">e-mail</option>\n" + "                                    <option value=\"select\">Комбо-бокс</option>\n" + "                                    <option value=\"checkbox\">Чекбокс</option>\n" + "                                    <option value=\"textarea\">Абзац</option>\n" + "                                </select>\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"text\" :value=\"row.label\">\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"checkbox\" class=\"\">\n" + "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "\n" + "                                </select>\n" + "                            </td>";
+      tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "                                    <option value=\"text\">Текс</option>\n" + "                                    <option value=\"tel\">Телефон</option>\n" + "                                    <option value=\"email\">e-mail</option>\n" + "                                    <option value=\"select\">Комбо-бокс</option>\n" + "                                    <option value=\"checkbox\">Чекбокс</option>\n" + "                                    <option value=\"textarea\">Абзац</option>\n" + "                                </select>\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"text\" :value=\"row.label\">\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"checkbox\" class=\"\">\n" + "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "\n" + "                                </select>\n" + "                            </td>";
       var table = document.querySelector('.table__body');
       table.append(tr);
+    },
+    deleteLine: function deleteLine() {
+      $('input[data-id]').each(function () {
+        $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none");
+      });
+      var check = document.querySelectorAll("input[data-id]"); // let check = document.querySelectorAll("input[data-id]");
+      // check.forEach(function (item, i, check) {
+      //         // if(item[i].checked){
+      //         //     console.log(item[i] + 'is checked')
+      //         // }
+      //
+      //     console.log(item[i])
+      // })
+      //если инпут с любым дата id был выбран, тогда удаляем его родителя
+      // check.forEach(function (item, i, check) {
+      //     console.log();
+      // })
+      // $('#checkpass').is(':checked') ? inp[0].type = 'password' : inp[0].type = 'text'
+      // console.log(check);
     }
   }
 });
@@ -2175,6 +2193,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-quest-all",
@@ -2186,14 +2209,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.loadQuests(); // console.log(this.$route)
+    this.loadQuests();
   },
   methods: {
     loadQuests: function loadQuests() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quest').then(function (res) {
-        _this.quests = res.data; // console.log(this.quests);
+        _this.quests = res.data;
+        console.log(res.data);
       });
     }
   }
@@ -2276,8 +2300,9 @@ __webpack_require__.r(__webpack_exports__);
     loadQuest: function loadQuest(id) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/quest/".concat(this.$route.params.id)).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/quest/" + id).then(function (res) {
         _this.quest = res.data;
+        console.log(res.data);
       }); // axios.get('api/quest/'+id)
       // .then(res=>{
       //     this.quest = res.data;
@@ -6987,7 +7012,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7a398df0] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\ntable td[data-v-7a398df0] {\n    padding: 5px;\n    transition: all .3s;\n}\ntable thead[data-v-7a398df0],\ntable tr[data-v-7a398df0]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-7a398df0]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-7a398df0] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.questionnaire-table__cell-title[data-v-7a398df0],\n.questionnaire-table__cell-edit[data-v-7a398df0],\n.questionnaire-table__cell-result[data-v-7a398df0]{\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-7a398df0]:hover,\n.questionnaire-table__cell-edit[data-v-7a398df0]:hover,\n.questionnaire-table__cell-result[data-v-7a398df0]:hover{\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-7a398df0]{\n    display: flex;\n    justify-content: space-between;\n}\n.questionnaire-table__header span[data-v-7a398df0]{\n    font-weight: 700;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7a398df0] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\ntable td[data-v-7a398df0] {\n    padding: 5px;\n    transition: all .3s;\n}\ntable thead[data-v-7a398df0],\ntable tr[data-v-7a398df0]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-7a398df0]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-7a398df0] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.questionnaire-table__cell-title[data-v-7a398df0],\n.questionnaire-table__cell-edit[data-v-7a398df0],\n.questionnaire-table__cell-result[data-v-7a398df0] {\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-7a398df0]:hover,\n.questionnaire-table__cell-edit[data-v-7a398df0]:hover,\n.questionnaire-table__cell-result[data-v-7a398df0]:hover {\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-7a398df0] {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.questionnaire-table__header span[data-v-7a398df0] {\n    font-weight: 700;\n}\n.questionnaire-table__btn-del[data-v-7a398df0] {\n    margin-left: 5px;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0],\n.questionnaire-table__btn-del a[data-v-7a398df0] {\n    color: #181818;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0]:hover,\n.questionnaire-table__btn-del a[data-v-7a398df0]:hover {\n    color: #181818;\n    text-decoration: none\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38566,19 +38591,28 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "a",
-                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    {
+                      staticClass: "edit-quest__btn",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.deleteLine($event)
+                        }
+                      }
+                    },
                     [_vm._v("Удалить поле")]
                   ),
                   _vm._v(" "),
                   _c(
                     "a",
-                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    { staticClass: "edit-quest__btn", attrs: { href: "#" } },
                     [_vm._v("Вверх")]
                   ),
                   _vm._v(" "),
                   _c(
                     "a",
-                    { staticClass: "edit-quest__btn", attrs: { href: "" } },
+                    { staticClass: "edit-quest__btn", attrs: { href: "#" } },
                     [_vm._v("Вниз")]
                   )
                 ])
@@ -38596,9 +38630,13 @@ var render = function() {
                   { staticClass: "table__body" },
                   _vm._l(_vm.quests.options, function(row, index) {
                     return _c("tr", { staticClass: "table__row-body" }, [
-                      _vm._m(3, true),
+                      _c("td", { staticClass: "table__checkbox" }, [
+                        _c("input", {
+                          attrs: { type: "checkbox", "data-id": index }
+                        })
+                      ]),
                       _vm._v(" "),
-                      _vm._m(4, true),
+                      _vm._m(3, true),
                       _vm._v(" "),
                       _c("td", { staticClass: "table__body-cell" }, [
                         _c("input", {
@@ -38607,7 +38645,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(5, true),
+                      _vm._m(4, true),
                       _vm._v(" "),
                       _c("td", { staticClass: "table__body-cell" }, [
                         _c("input", {
@@ -38616,7 +38654,7 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(6, true)
+                      _vm._m(5, true)
                     ])
                   }),
                   0
@@ -38646,15 +38684,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form__header-col" }, [
       _c("div", { staticClass: "edit-quest__btns-save" }, [
-        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "#" } }, [
           _vm._v("Просмотр")
         ]),
         _vm._v(" "),
-        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "#" } }, [
           _vm._v("Сохранить")
         ]),
         _vm._v(" "),
-        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "" } }, [
+        _c("a", { staticClass: "edit-quest__btn-save", attrs: { href: "#" } }, [
           _vm._v("Отменить")
         ])
       ])
@@ -38680,14 +38718,6 @@ var staticRenderFns = [
           _vm._v("По умолчанию")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "table__body-cell" }, [
-      _c("input", { attrs: { type: "checkbox" } })
     ])
   },
   function() {
@@ -38987,13 +39017,36 @@ var render = function() {
           _c("div", { staticClass: "questionnaire-table__header" }, [
             _c("span", [
               _vm._v(
-                "\n                        Список анкет пользователя " +
+                "\n                    Список анкет пользователя " +
                   _vm._s(_vm.user) +
-                  "\n                    "
+                  "\n                "
               )
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c(
+              "div",
+              { staticClass: "questionnaire-table__btns" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "questionnaire-table__btn-add",
+                    attrs: { to: "/edit" }
+                  },
+                  [_vm._v("Добавить")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "questionnaire-table__btn-del",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Удалить")]
+                )
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "questionnaire-table__wrap" }, [
@@ -39008,30 +39061,43 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.quests, function(item) {
                     return _c("tr", [
-                      _vm._m(1, true),
+                      _vm._m(0, true),
                       _vm._v(" "),
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-title" },
                         [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(item.title) +
-                              "\n                            "
+                          _c(
+                            "router-link",
+                            { attrs: { to: "/form/" + item.id } },
+                            [_vm._v(_vm._s(item.title))]
                           )
-                        ]
+                        ],
+                        1
                       ),
                       _vm._v(" "),
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-edit" },
-                        [_vm._v("Правка")]
+                        [
+                          _c("router-link", { attrs: { to: "/edit" } }, [
+                            _vm._v("Правка")
+                          ])
+                        ],
+                        1
                       ),
                       _vm._v(" "),
                       _c(
                         "td",
                         { staticClass: "questionnaire-table__cell-result" },
-                        [_vm._v("результаты(15)")]
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: "/result/" + item.id } },
+                            [_vm._v(" результаты($)")]
+                          )
+                        ],
+                        1
                       ),
                       _vm._v(" "),
                       _c(
@@ -39052,20 +39118,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "questionnaire-table__btns" }, [
-      _c("button", { staticClass: "questionnaire-table__btn-add" }, [
-        _vm._v("Добавить")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "questionnaire-table__btn-del" }, [
-        _vm._v("Удалить")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39103,13 +39155,13 @@ var render = function() {
         _c(
           "form",
           {
-            staticClass: "form quest-form guest-page__form",
+            staticClass: "form quest-form quest-page__form",
             attrs: { action: "#" }
           },
           [
             _vm._v(
               "\n                title: " +
-                _vm._s(_vm.title) +
+                _vm._s(_vm.quest.title) +
                 "\n                "
             ),
             _vm._m(0),

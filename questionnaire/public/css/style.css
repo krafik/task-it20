@@ -9,6 +9,11 @@ a {
   color: inherit;
 }
 
+a:hover {
+  text-decoration: none;
+  color: #181818;
+}
+
 ul {
   margin: 0;
 }
@@ -132,6 +137,18 @@ label {
   justify-content: space-between;
 }
 
+@media screen and (max-width: 767.98px) {
+  .quest-page__wrapper {
+    width: 300px;
+  }
+  .quest-form__inp-w {
+    flex-direction: column;
+  }
+
+  .form__input-q {
+    width: 100%;
+  }
+}
 .captcha__img, .captcha__inp {
   width: 60px;
 }
@@ -181,6 +198,9 @@ label {
 }
 .table__select {
   width: 100%;
+}
+.table__body-cell {
+  min-width: 100px;
 }
 
 @media screen and (max-width: 991.98px) {
@@ -237,4 +257,23 @@ label {
   margin: 0 5px;
 }
 
+@media screen and (max-width: 767.98px) {
+  .edit-quest__wrapper {
+    overflow-x: auto;
+  }
+
+  .form__header {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  .form__table {
+    overflow-x: auto;
+  }
+
+  .table td {
+    padding: 10px;
+  }
+}
 /*end edit-page*/
