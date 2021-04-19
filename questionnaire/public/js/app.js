@@ -2360,8 +2360,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quest').then(function (res) {
-        _this.quests = res.data;
-        console.log(res.data);
+        _this.quests = res.data; // console.log(this.quests);
       });
     }
   }

@@ -58,7 +58,7 @@
                 axios.get('/api/quest')
                     .then(res => {
                         this.quests = res.data;
-                        console.log(res.data);
+                        // console.log(this.quests);
                     })
             }
         }
