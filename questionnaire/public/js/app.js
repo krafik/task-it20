@@ -1867,14 +1867,15 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: 'Редакт',
         href: '/edit'
-      }, // {
+      } // {
       //     title: 'Форма',
       //     href: '/form',
       // },
-      {
-        title: 'Результаты',
-        href: '/result'
-      }]
+      // {
+      //     title: 'Результаты',
+      //     href: '/result',
+      // }
+      ]
     };
   }
 });
@@ -2160,7 +2161,8 @@ __webpack_require__.r(__webpack_exports__);
       // $('input[data-id]').each(function () {
       //     $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
       // })
-      $('tr[data-select]').remove(); // let check = document.querySelectorAll("input[data-id]");
+      $('tr[data-select]').remove();
+      $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled'); // let check = document.querySelectorAll("input[data-id]");
       // let check = document.querySelectorAll("input[data-id]");
       // check.forEach(function (item, i, check) {
       //         // if(item[i].checked){
@@ -2342,6 +2344,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-quest-all",
@@ -2349,7 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       quests: [],
       user: 'ivan@tygoy.com',
-      time: '20.06.2010'
+      time: '20.06.2010',
+      loading: true,
+      error: false
     };
   },
   mounted: function mounted() {
@@ -2359,9 +2365,25 @@ __webpack_require__.r(__webpack_exports__);
     loadQuests: function loadQuests() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quest').then(function (res) {
-        _this.quests = res.data; // console.log(this.quests);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/quest').then(function (response) {
+        _this.quests = response.data;
+        setTimeout(function () {
+          _this.loading = false;
+        }, 500);
+      })["catch"](function (err) {
+        _this.loading = false;
+        _this.error = true;
+        console.log(err);
       });
+    },
+    checkTr: function checkTr(e) {
+      $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
+      $('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false); // ? $(e.target).closest("tr").attr('data-select', 'select')
+      // : $(e.target).closest("tr").removeAttr("data-select");
+    },
+    deleteLine: function deleteLine() {
+      $('tr[data-select]').remove();
+      $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled');
     }
   }
 });
@@ -2426,27 +2448,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-quest-page",
   data: function data() {
     return {
       quest: [],
-      title: 'some title' // notFound: false
+      loading: true,
+      error: false // title: 'some title'
+      // notFound: false
 
     };
   },
   mounted: function mounted() {
-    this.loadQuest(this.$route.params.id);
+    this.loadQuest(this.$route.params.id); // this.loadQuest(id)
   },
   methods: {
     loadQuest: function loadQuest(id) {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/quest/" + id).then(function (res) {
-        _this.quest = res.data;
-        console.log(res.data);
-      }); // axios.get('api/quest/'+id)
+        _this.quest = res.data; // console.log(res.data);
+
+        setTimeout(function () {
+          _this.loading = false;
+        }, 500);
+      })["catch"](function (err) {
+        _this.loading = false;
+        _this.error = true;
+      }); // console.log(axios.get())
+      // axios.get('api/quest/'+id)
       // .then(res=>{
       //     this.quest = res.data;
       //     console.log(this.quest)
@@ -2471,6 +2504,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2542,8 +2582,45 @@ __webpack_require__.r(__webpack_exports__);
         equip: 'Холодильник',
         callback: 'да',
         comment: 'Дайте холодос в каторый можно класть пиво.'
-      }]
+      }],
+      res: [],
+      loading: true,
+      error: false
     };
+  },
+  props: {
+    title: {
+      type: String,
+      "default": 'here is must be title'
+    }
+  },
+  mounted: function mounted() {
+    this.loadResult(this.$route.params.id);
+  },
+  methods: {
+    loadResult: function loadResult(id) {
+      var _this = this;
+
+      axios.get('api/result/' + id).then(function (response) {
+        _this.res = response.data;
+        setTimeout(function () {
+          _this.loading = false;
+        }, 500);
+        console.log(response);
+      })["catch"](function (err) {
+        _this.loading = false;
+        _this.error = true;
+      });
+    },
+    checkTr: function checkTr(e) {
+      $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
+      $('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false); // ? $(e.target).closest("tr").attr('data-select', 'select')
+      // : $(e.target).closest("tr").removeAttr("data-select");
+    },
+    deleteLine: function deleteLine() {
+      $('tr[data-select]').remove();
+      $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled');
+    }
   }
 });
 
@@ -2593,6 +2670,21 @@ Vue.component('v-header', __webpack_require__(/*! ./components/v-header.vue */ "
 var app = new Vue({
   el: '#app',
   router: _router__WEBPACK_IMPORTED_MODULE_1__.default // render: h => h(app)
+  // methods:{
+  //     deleteLine(){
+  //         $('tr[data-select]').remove()
+  //         $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled')
+  //     },
+  //     checkTr(e){
+  //         $(e.target).is(':checked')
+  //             ? $(e.target).closest("tr").attr('data-select', 'select')
+  //             : $(e.target).closest("tr").removeAttr("data-select");
+  //
+  //         $('input[data-id]:checked').length >=1
+  //             ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true)
+  //             : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
+  //     }
+  // }
 
 });
 $(document).ready(function () {
@@ -2632,7 +2724,20 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = 'http://localhost:8000'; // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}; // let token = document.head.querySelector('meta[name="csrf-token"]');
+//
+// if (token) {
+//     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+// } else {
+//     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+// }
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -2685,9 +2790,10 @@ var routes = [{
   component: _views_v_edit_page__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
   path: '/form/:id',
-  component: _views_v_quest_page__WEBPACK_IMPORTED_MODULE_3__.default
+  component: _views_v_quest_page__WEBPACK_IMPORTED_MODULE_3__.default,
+  props: true
 }, {
-  path: "/result",
+  path: "/result/:id",
   component: _views_v_res_page__WEBPACK_IMPORTED_MODULE_4__.default
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_5__.default({
@@ -7155,7 +7261,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7a398df0] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\ntable td[data-v-7a398df0] {\n    padding: 5px;\n    transition: all .3s;\n}\ntable thead[data-v-7a398df0],\ntable tr[data-v-7a398df0]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-7a398df0]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-7a398df0] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\n.questionnaire-table__cell-title[data-v-7a398df0],\n.questionnaire-table__cell-edit[data-v-7a398df0],\n.questionnaire-table__cell-result[data-v-7a398df0] {\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-7a398df0]:hover,\n.questionnaire-table__cell-edit[data-v-7a398df0]:hover,\n.questionnaire-table__cell-result[data-v-7a398df0]:hover {\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-7a398df0] {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.questionnaire-table__header span[data-v-7a398df0] {\n    font-weight: 700;\n}\n.questionnaire-table__btn-del[data-v-7a398df0] {\n    margin-left: 5px;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0],\n.questionnaire-table__btn-del a[data-v-7a398df0] {\n    color: #181818;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0]:hover,\n.questionnaire-table__btn-del a[data-v-7a398df0]:hover {\n    color: #181818;\n    text-decoration: none\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntable[data-v-7a398df0] {\n    width: 100%;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n}\ntable td[data-v-7a398df0] {\n    padding: 5px;\n    transition: all .3s;\n}\n.table__link[data-v-7a398df0]{\n    display: inline-block;\n    width: 100%;\n}\ntable thead[data-v-7a398df0],\ntable tr[data-v-7a398df0]:nth-child(even) {\n    background: #ccc;\n}\ntable td[data-v-7a398df0]:not(:last-child) {\n    border-right: 1px solid;\n}\n.questionnaire-table__wrap[data-v-7a398df0] {\n    overflow-x: auto;\n    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);\n    transition: all ease 1s;\n}\n.questionnaire-table__cell-title[data-v-7a398df0],\n.questionnaire-table__cell-edit[data-v-7a398df0],\n.questionnaire-table__cell-result[data-v-7a398df0] {\n    cursor: pointer;\n}\n.questionnaire-table__cell-title[data-v-7a398df0]:hover,\n.questionnaire-table__cell-edit[data-v-7a398df0]:hover,\n.questionnaire-table__cell-result[data-v-7a398df0]:hover {\n    background-color: #c4c4c4;\n}\n.questionnaire-table__header[data-v-7a398df0] {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 10px;\n}\n.questionnaire-table__header span[data-v-7a398df0] {\n    font-weight: 700;\n}\n.questionnaire-table__btn-del[data-v-7a398df0] {\n    margin-left: 5px;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0],\n.questionnaire-table__btn-del a[data-v-7a398df0] {\n    color: #181818;\n}\n.questionnaire-table__btn-add a[data-v-7a398df0]:hover,\n.questionnaire-table__btn-del a[data-v-7a398df0]:hover {\n    color: #181818;\n    text-decoration: none\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38876,7 +38982,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "edit-quest__btn",
-                      attrs: { href: "#" },
+                      attrs: { href: "addLine" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -38891,7 +38997,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "edit-quest__btn",
-                      attrs: { href: "#" },
+                      attrs: { href: "deleteLine" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -38906,7 +39012,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "edit-quest__btn",
-                      attrs: { href: "#" },
+                      attrs: { href: "up" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -38921,7 +39027,7 @@ var render = function() {
                     "a",
                     {
                       staticClass: "edit-quest__btn",
-                      attrs: { href: "#" },
+                      attrs: { href: "down" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -39275,118 +39381,142 @@ var render = function() {
     { staticClass: "app__section questionnaire-table app__questionnaire" },
     [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "questionnaire-table__wrapper" }, [
-          _c("div", { staticClass: "questionnaire-table__header" }, [
-            _c("span", [
-              _vm._v(
-                "\n                    Список анкет пользователя " +
-                  _vm._s(_vm.user) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "questionnaire-table__btns" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "questionnaire-table__btn-add",
-                    attrs: { to: "/edit" }
-                  },
-                  [_vm._v("Добавить")]
-                ),
+        _vm.loading
+          ? _c("div", { staticClass: "loading" }, [
+              _c("span", [_vm._v("Загрузка...")])
+            ])
+          : !_vm.loading && !_vm.error
+          ? _c("div", { staticClass: "questionnaire-table__wrapper" }, [
+              _c("div", { staticClass: "questionnaire-table__header" }, [
+                _c("span", [
+                  _vm._v(
+                    "\n                    Список анкет пользователя " +
+                      _vm._s(_vm.user) +
+                      "\n                "
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
-                  "a",
-                  {
-                    staticClass: "questionnaire-table__btn-del",
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("Удалить")]
+                  "div",
+                  { staticClass: "questionnaire-table__btns" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "questionnaire-table__btn-add",
+                        attrs: { to: "/edit" }
+                      },
+                      [_vm._v("Добавить")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "questionnaire-table__btn-del",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.deleteLine($event)
+                          }
+                        }
+                      },
+                      [_vm._v("Удалить")]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "questionnaire-table__wrap" }, [
-            _c(
-              "table",
-              {
-                staticClass: "questionnaire__table",
-                attrs: { width: "750px", border: "1" }
-              },
-              [
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "questionnaire-table__wrap" }, [
                 _c(
-                  "tbody",
-                  _vm._l(_vm.quests, function(item) {
-                    return _c("tr", [
-                      _vm._m(0, true),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-title" },
-                        [
+                  "table",
+                  {
+                    staticClass: "table questionnaire__table",
+                    attrs: { width: "750px", border: "1" }
+                  },
+                  [
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.quests, function(item) {
+                        return _c("tr", { staticClass: "table__row-body" }, [
+                          _c("td", [
+                            _c("input", {
+                              attrs: { type: "checkbox", "data-id": item.id },
+                              on: { click: _vm.checkTr }
+                            })
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "router-link",
-                            { attrs: { to: "/form/" + item.id } },
-                            [_vm._v(_vm._s(item.title))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-edit" },
-                        [
-                          _c("router-link", { attrs: { to: "/edit" } }, [
-                            _vm._v("Правка")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-result" },
-                        [
+                            "td",
+                            { staticClass: "questionnaire-table__cell-title" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/form/" + item.id }
+                                },
+                                [_vm._v(_vm._s(item.title))]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c(
-                            "router-link",
-                            { attrs: { to: "/result/" + item.id } },
-                            [_vm._v(" результаты($)")]
+                            "td",
+                            { staticClass: "questionnaire-table__cell-edit" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/edit" }
+                                },
+                                [_vm._v("Правка")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-result" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: {
+                                    title: item.title,
+                                    to: "/result/" + item.id
+                                  }
+                                },
+                                [_vm._v(" результаты($)")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-time" },
+                            [_vm._v(_vm._s(_vm.time))]
                           )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-time" },
-                        [_vm._v(_vm._s(_vm.time))]
-                      )
-                    ])
-                  }),
-                  0
+                        ])
+                      }),
+                      0
+                    )
+                  ]
                 )
-              ]
-            )
-          ])
-        ])
+              ])
+            ])
+          : _c("div", { staticClass: "error error-404" }, [_vm._v("Error!")])
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("input", { attrs: { type: "checkbox" } })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39413,35 +39543,38 @@ var render = function() {
     "section",
     { staticClass: "app__section app__quest-form quest-page" },
     [
-      _c("div", { staticClass: "app__form-wrapper quest-page__wrapper" }, [
-        _c(
-          "form",
-          {
-            staticClass: "form quest-form quest-page__form",
-            attrs: { action: "#" }
-          },
-          [
-            _vm._v(
-              "\n                title: " +
-                _vm._s(_vm.quest.title) +
-                "\n                "
-            ),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
-            _vm._m(6)
-          ]
-        )
-      ])
+      _vm.loading
+        ? _c("div", { staticClass: "loading" }, [
+            _c("span", [_vm._v("Загрузка...")])
+          ])
+        : !_vm.loading && !_vm.error
+        ? _c("div", { staticClass: "app__form-wrapper quest-page__wrapper" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form quest-form quest-page__form",
+                attrs: { action: "#" }
+              },
+              [
+                _c("strong", [_vm._v(_vm._s(_vm.quest.title))]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6)
+              ]
+            )
+          ])
+        : _c("div", { staticClass: "error error-404" }, [_vm._v("404")])
     ]
   )
 }
@@ -39579,115 +39712,111 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "app__section res-page app__res-page" }, [
-    _c("div", { staticClass: "res-page__wrapper" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "res-page__table-wrap" }, [
-        _c("table", { staticClass: "table" }, [
-          _c(
-            "tbody",
-            _vm._l(_vm.result, function(item) {
-              return _c("tr", [
-                _c("td", { staticClass: "table__fcol" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "table__ftext-col" }, [
-                    _c("div", { staticClass: "name" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("Фио:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.name))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tel" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("Телефон:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.phone))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "email" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("E-mail:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.email))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "equip" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("Вид оборудования:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.equip))
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "table__scol" }, [
-                  _c("div", { staticClass: "table__stext_col" }, [
-                    _c("div", { staticClass: "callbacl" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("Перезвонить мне:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.callback))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "comment" }, [
-                      _c("span", { staticClass: "tabl__ncell" }, [
-                        _vm._v("Ваши комментарии:")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "table__vcell" }, [
-                        _vm._v(_vm._s(item.comment))
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            }),
-            0
-          )
+    _vm.loading
+      ? _c("div", { staticClass: "loading" }, [
+          _c("span", [_vm._v("Загрузка...")])
         ])
-      ])
-    ])
+      : !_vm.loading && !_vm.error
+      ? _c("div", { staticClass: "res-page__wrapper" }, [
+          _c("div", { staticClass: "res-page__header" }, [
+            _c("span", { staticClass: "res-page__text" }, [
+              _vm._v(_vm._s(_vm.title))
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "res-page__del-btn" }, [_vm._v("Удалить")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "res-page__table-wrap" }, [
+            _c("table", { staticClass: "table" }, [
+              _c(
+                "tbody",
+                _vm._l(_vm.res, function(item, index) {
+                  return _c("tr", { staticClass: "table__row-body" }, [
+                    _c("td", { staticClass: "table__fcol" }, [
+                      _c("div", { staticClass: "table__input" }, [
+                        _c("input", {
+                          attrs: { type: "checkbox", "data-id": index },
+                          on: { click: _vm.checkTr }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "table__ftext-col" }, [
+                        _c("div", { staticClass: "name" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("Фио:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "tel" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("Телефон:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.phone))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "email" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("E-mail:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.email))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "equip" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("Вид оборудования:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.equip))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "table__scol" }, [
+                      _c("div", { staticClass: "table__stext_col" }, [
+                        _c("div", { staticClass: "callbacl" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("Перезвонить мне:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.callback))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "comment" }, [
+                          _c("span", { staticClass: "tabl__ncell" }, [
+                            _vm._v("Ваши комментарии:")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "table__vcell" }, [
+                            _vm._v(_vm._s(item.comment))
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      : _c("div", { staticClass: "error error-404" }, [_vm._v("404")])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "res-page__header" }, [
-      _c("span", { staticClass: "res-page__text" }, [
-        _vm._v('Анкета 1 "заказ холодильных камер - результаты')
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "res-page__del-btn" }, [_vm._v("Удалить")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table__input" }, [
-      _c("input", { attrs: { type: "checkbox" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

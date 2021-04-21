@@ -29,10 +29,10 @@
                     //     title: 'Форма',
                     //     href: '/form',
                     // },
-                    {
-                        title: 'Результаты',
-                        href: '/result',
-                    }
+                    // {
+                    //     title: 'Результаты',
+                    //     href: '/result',
+                    // }
                 ]
             }
         }

@@ -41,6 +41,21 @@ const app = new Vue({
     el: '#app',
     router,
     // render: h => h(app)
+    // methods:{
+    //     deleteLine(){
+    //         $('tr[data-select]').remove()
+    //         $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled')
+    //     },
+    //     checkTr(e){
+    //         $(e.target).is(':checked')
+    //             ? $(e.target).closest("tr").attr('data-select', 'select')
+    //             : $(e.target).closest("tr").removeAttr("data-select");
+    //
+    //         $('input[data-id]:checked').length >=1
+    //             ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true)
+    //             : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
+    //     }
+    // }
 })
 
 

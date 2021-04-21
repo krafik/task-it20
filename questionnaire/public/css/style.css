@@ -12,6 +12,7 @@ a {
 a:hover {
   text-decoration: none;
   color: #181818;
+  cursor: pointer;
 }
 
 ul {
@@ -166,10 +167,12 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 5px;
 }
 .res-page__wrapper {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
   padding: 10px;
+  min-width: 800px;
 }
 .res-page__table-wrap {
   overflow-x: auto;
@@ -177,7 +180,14 @@ label {
 .res-page__text {
   font-weight: 600;
 }
+.res-page__del-btn {
+  padding: 10px;
+  border: 1px solid;
+}
 
+.table {
+  margin-bottom: 0;
+}
 .table__fcol, .table__scol {
   width: 400px;
 }
@@ -213,6 +223,7 @@ label {
 }
 @media screen and (max-width: 767.98px) {
   .res-page__wrapper {
+    min-width: 320px;
     padding: 0;
   }
 
@@ -280,3 +291,11 @@ label {
   }
 }
 /*end edit-page*/
+.loading {
+  transition: all ease 0.5s;
+  font-size: 50px;
+}
+
+.error, .error-404 {
+  font-size: 50px;
+}

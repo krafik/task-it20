@@ -9,10 +9,10 @@
                             <input type="text" value="Анкета 5">
                         </div>
                         <div class="edit-quest__btns-change">
-                            <a href="#" @click.prevent="addLine" class="edit-quest__btn">Добавить поле</a>
-                            <a href="#" @click.prevent="deleteLine" class="edit-quest__btn">Удалить поле</a>
-                            <a href="#" @click.prevent="up" class="edit-quest__btn">Вверх</a>
-                            <a href="#" @click.prevent="down" class="edit-quest__btn">Вниз</a>
+                            <a href="addLine" @click.prevent="addLine" class="edit-quest__btn">Добавить поле</a>
+                            <a href="deleteLine" @click.prevent="deleteLine" class="edit-quest__btn">Удалить поле</a>
+                            <a href="up" @click.prevent="up" class="edit-quest__btn">Вверх</a>
+                            <a href="down" @click.prevent="down" class="edit-quest__btn">Вниз</a>
                         </div>
                     </div>
                     <div class="form__header-col">
@@ -190,6 +190,7 @@
                 //     $(this).prop('checked') ? $(this).prop('checked').closest('tr').remove() : console.log("none")
                 // })
                 $('tr[data-select]').remove()
+                $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled')
                 // let check = document.querySelectorAll("input[data-id]");
 
 

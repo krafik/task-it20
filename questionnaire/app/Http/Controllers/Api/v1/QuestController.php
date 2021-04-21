@@ -6,9 +6,13 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\QuestInfo;
 use App\Questionary;
-use http\Env\Response;
-use Illuminate\Http\Request;
+//use Symfony\Component\HttpFoundation\Response;
+//use http\Env\Response;
+//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Validator;
+//use http\Client\Response;
+//use Illuminate\Http\Response;
 
 
 class QuestController extends Controller
@@ -20,7 +24,13 @@ class QuestController extends Controller
      */
     public function index()
     {
-        return Questionary::all();
+//        return Questionary::all();
+        $quests = Questionary::all();
+        if (!$quests) {
+            return Response::json(['message'=>'not found'],404);
+        }
+        return $quests;
+
     }
 
     /**
@@ -77,9 +87,13 @@ class QuestController extends Controller
 //        $quests = QuestInfo::where('quest_id', '=', $id)->get();
         $quests = Questionary::find($id);
         if (!$quests) {
-            return [
-                    "status" => false,
-                    "message" => "post not found"];
+//          return Response::make('there\'s nothing here',404);
+          return Response::json(['message'=>'not found'],404);
+
+//            return responce()->json([
+//                "status" => false,
+//                "message" => "there's nothing here"
+//            ])->setStatusCode(404);
         }
         return $quests;
 //       return response()->json($quests->all(),200);

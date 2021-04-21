@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\QuestInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ResController extends Controller
 {
@@ -47,8 +48,17 @@ class ResController extends Controller
      */
     public function show($id)
     {
-        $quests = QuestInfo::where('quest_id', '=', $id)->get();
-        return $quests;
+        $results = QuestInfo::where('quest_id', '=', $id)->get();
+
+
+        if(!$results || count($results)<1){
+//            return
+//                [
+//                    "status" => false
+//                ];
+            return Response::make('there\'s nothing here',404);
+        }
+        return $results;
     }
 
     /**

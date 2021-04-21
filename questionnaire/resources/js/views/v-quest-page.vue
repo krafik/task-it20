@@ -1,26 +1,28 @@
 <template>
     <section class="app__section app__quest-form quest-page">
-        <div class="app__form-wrapper quest-page__wrapper">
+        <div v-if="loading" class="loading"><span>Загрузка...</span></div>
+        <div v-else-if="!loading && !error" class="app__form-wrapper quest-page__wrapper">
             <form action="#" class="form quest-form quest-page__form">
-                title: {{quest.title}}
+                <strong>{{quest.title}}</strong>
+
                 <div class="form__input-w form__input-bg quest-form__inp-w ">
-                    <span  class="quest-form__label">ФИО</span>
+                    <span class="quest-form__label">ФИО</span>
                     <input type="text" class="form__input-q">
                 </div>
                 <div class="form__input-w form__input-bg quest-form__inp-w">
-                    <span  class="quest-form__label">Телефон</span>
+                    <span class="quest-form__label">Телефон</span>
                     <input type="tel" class="form__input-q">
                 </div>
                 <div class="form__input-w form__input-bg quest-form__inp-w">
-                    <span  class="quest-form__label">E-mail</span>
+                    <span class="quest-form__label">E-mail</span>
                     <input type="email" class="form__input-q">
                 </div>
                 <div class="form__input-w form__input-bg quest-form__inp-w">
-                    <span  class="quest-form__label">Вид оборудования</span>
+                    <span class="quest-form__label">Вид оборудования</span>
                     <input type="text" class="form__input-q">
                 </div>
                 <div class="form__input-w form__input-bg quest-form__inp-w-check">
-                    <input id="checktel" type="checkbox" >
+                    <input id="checktel" type="checkbox">
                     <label for="checktel">Перезвоните мне</label>
                 </div>
                 <div class="form__input-w form__input-bg quest-form__inp-w">
@@ -39,7 +41,7 @@
                 </div>
             </form>
         </div>
-<!--<div v-else>not found</div>-->
+        <div class="error error-404" v-else>404</div>
     </section>
 </template>
 
@@ -48,21 +50,33 @@
 
     export default {
         name: "v-quest-page",
-        data:()=>({
-            quest:[],
-            title: 'some title'
+        data: () => ({
+            quest: [],
+            loading: true,
+            error: false,
+            // title: 'some title'
             // notFound: false
         }),
-        mounted(){
+        mounted() {
             this.loadQuest(this.$route.params.id)
+            // this.loadQuest(id)
         },
-        methods:{
-            loadQuest(id){
-                axios.get(`api/quest/`+id)
-                .then(res=>{
-                    this.quest = res.data
-                    console.log(res.data)
-                })
+        methods: {
+            loadQuest(id) {
+                axios.get(`api/quest/` + id)
+                    .then(res => {
+                        this.quest = res.data;
+                        // console.log(res.data);
+                        setTimeout(()=>{
+                            this.loading = false
+                        }, 500)
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        this.error = true
+
+                    })
+                // console.log(axios.get())
                 // axios.get('api/quest/'+id)
                 // .then(res=>{
                 //     this.quest = res.data;
