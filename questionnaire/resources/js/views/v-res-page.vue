@@ -5,7 +5,7 @@
         <div v-else-if="!loading && !error" class="res-page__wrapper">
             <div class="res-page__header">
                 <span class="res-page__text">{{title}}</span>
-                <a class="res-page__del-btn">Удалить</a>
+                <a @click.prevent="deleteLine" class="res-page__del-btn">Удалить</a>
             </div>
             <div class="res-page__table-wrap">
                 <table class="table">

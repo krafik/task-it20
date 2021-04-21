@@ -39723,7 +39723,19 @@ var render = function() {
               _vm._v(_vm._s(_vm.title))
             ]),
             _vm._v(" "),
-            _c("a", { staticClass: "res-page__del-btn" }, [_vm._v("Удалить")])
+            _c(
+              "a",
+              {
+                staticClass: "res-page__del-btn",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.deleteLine($event)
+                  }
+                }
+              },
+              [_vm._v("Удалить")]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "res-page__table-wrap" }, [
