@@ -55,7 +55,6 @@
         }),
         mounted() {
             this.loadQuests();
-
         },
         methods: {
             loadQuests() {
