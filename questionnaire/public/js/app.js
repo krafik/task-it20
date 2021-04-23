@@ -2470,8 +2470,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("api/quest/" + id).then(function (res) {
-        _this.quest = res.data; // console.log(res.data);
-
+        _this.quest = res.data;
+        console.log(res);
         setTimeout(function () {
           _this.loading = false;
         }, 500);
@@ -2596,6 +2596,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.loadResult(this.$route.params.id);
+    console.log(this.$route.params.id);
   },
   methods: {
     loadResult: function loadResult(id) {
@@ -2723,21 +2724,22 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.baseURL = 'http://localhost:8000';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.baseURL = '/'; // window.axios.defaults.baseURL = 'http://localhost:8000';
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
-}; // let token = document.head.querySelector('meta[name="csrf-token"]');
-//
-// if (token) {
-//     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-// } else {
-//     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-// }
+};
+var token = document.head.querySelector('meta[name="csrf-token"]');
 
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

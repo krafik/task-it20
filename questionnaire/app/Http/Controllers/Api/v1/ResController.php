@@ -56,7 +56,8 @@ class ResController extends Controller
 //                [
 //                    "status" => false
 //                ];
-            return Response::make('there\'s nothing here',404);
+            return Response::json(['message'=>'not found'],404);
+//            return Response::make('there\'s nothing here',404);
         }
         return $results;
     }

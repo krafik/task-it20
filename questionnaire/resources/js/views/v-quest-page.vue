@@ -66,7 +66,7 @@
                 axios.get(`api/quest/` + id)
                     .then(res => {
                         this.quest = res.data;
-                        // console.log(res.data);
+                        console.log(res);
                         setTimeout(()=>{
                             this.loading = false
                         }, 500)
