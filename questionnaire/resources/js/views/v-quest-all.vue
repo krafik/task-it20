@@ -1,8 +1,18 @@
 <template>
     <section class="app__section questionnaire-table app__questionnaire">
         <div class="container">
-            <div v-if="loading" class="loading"><span>Загрузка...</span></div>
-            <div v-else-if="!loading && !error" class="questionnaire-table__wrapper">
+            <table class="table">
+                <tbody>
+                <!--                        <tr v-for="item in items">-->
+                <!--                            {{item.name}} - {{item.price}}-->
+                <!--                        </tr>-->
+                <tr>{{done}}</tr>
+                <!--                        <button @click="up">up</button>-->
+                </tbody>
+            </table>
+<!--            <div v-if="loading" class="loading"><span>Загрузка...</span></div>-->
+<!--            <div v-else-if="!loading && !error" class="questionnaire-table__wrapper">-->
+            <div class="questionnaire-table__wrapper">
                 <div class="questionnaire-table__header">
                     <span>
                         Список анкет пользователя {{user}}
@@ -18,7 +28,7 @@
                         <tr class="table__row-body" v-for="item in quests">
                             <td><input @click="checkTr" type="checkbox" :data-id="item.id"></td>
                             <td class="questionnaire-table__cell-title">
-                                <router-link class="table__link"  :to="'/form/'+item.id">{{item.title}}</router-link>
+                                <router-link class="table__link" :to="'/form/'+item.id">{{item.title}}</router-link>
 
                             </td>
                             <td class="questionnaire-table__cell-edit">
@@ -26,16 +36,19 @@
                             </td>
                             <!--                            <td class="questionnaire-table__cell-result">{{item.res}}</td>-->
                             <td class="questionnaire-table__cell-result">
-                                <router-link class="table__link" :title="item.title" :to="'/result/'+item.id"> результаты($)</router-link>
+                                <router-link class="table__link" :title="item.title" :to="'/result/'+item.id">
+                                    результаты($)
+                                </router-link>
                             </td>
                             <!--                            <td class="questionnaire-table__cell-time">{{item.time}}</td>-->
                             <td class="questionnaire-table__cell-time">{{time}}</td>
                         </tr>
                         </tbody>
                     </table>
+
                 </div>
             </div>
-            <div class="error error-404" v-else>Error!</div>
+<!--            <div class="error error-404" v-else>Error!</div>-->
         </div>
 
     </section>
@@ -43,43 +56,95 @@
 
 <script>
     import axios from 'axios'
-
+    import {mapGetters, mapActions, mapState} from 'vuex'
     export default {
         name: "v-quest-all",
-        data: () => ({
-            quests: [],
-            user: 'ivan@tygoy.com',
-            time: '20.06.2010',
-            loading: true,
-            error: false
-        }),
+        // data: () => ({
+        //     // allQuest:[],
+        //     quests: [],
+        //     user: 'ivan@tygoy.com',
+        //     time: '20.06.2010',
+        //     loading: false,
+        //     error: false
+        // }),
+        data() {
+            return {
+                items: [
+                    {name: 'Alph', price: 1},
+                    {name: 'Beta', price: 4}
+                ],
+                // loading: false,
+                // error: false,
+                quests: [],
+                user: 'ivan@tygoy.com',
+                time: '20.06.2010',
+            }
+        },
+        // computed: {
+        //     count() {
+        //         return this.$store.state.count
+        //     }
+        // },
+        computed:{
+            done(){
+                // return this.$store.state.que
+                return this.$store.getters.allQuest
+            }
+        },
+
+            // mapGetters({done: 'allQuest'}),
+            // mapGetters({done: 'doneTodos'}),
+        // mapState(['count']),
+        // count() {
+        //     return this.$store.getters.doneTodos
+        // }
+        // todos(){
+        //     return this.$store.getters.doneTodos
+        // }
+        // },
+        // computed:
+        // mapGetters([""])
+        // mapGetters(["allQuest"]),
+
         mounted() {
-            this.loadQuests();
+            this.$store.dispatch('loadQuests')
+            // this.$store.dispatch('up')
+            // this.loadQuests()
+
         },
         methods: {
-            loadQuests() {
-                axios.get('/api/quest')
-                    .then(response => {
-                        this.quests = response.data;
-                        setTimeout(()=>{
-                            this.loading = false
-                        }, 500)
-                    })
-                .catch(err=>{
-                    this.loading = false
-                    this.error = true
-                    console.log(err)
-                })
+            up() {
+                this.$store.commit('increment')
+
             },
+            // const newItem = {name:'New', price: '-'}
+            // this.items.push(newItem);
+            // setTimeout(()=>{
+            //    newItem.price='over 9000';
+            // }, 3000);
+            // ...mapActions(["loadQuests"]),
+            // loadQuests() {
+            //     axios.get('/api/quest')
+            //         .then(response => {
+            //             this.quests = response.data;
+            //             setTimeout(() => {
+            //                 this.loading = false
+            //             }, 500)
+            //         })
+            //         .catch(err => {
+            //             this.loading = false
+            //             this.error = true
+            //             console.log(err)
+            //         })
+            // },
             checkTr(e) {
 
                 $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
-
-                $('input[data-id]:checked').length >=1  ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
-                    // ? $(e.target).closest("tr").attr('data-select', 'select')
-                    // : $(e.target).closest("tr").removeAttr("data-select");
+                $('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
+                // ? $(e.target).closest("tr").attr('data-select', 'select')
+                // : $(e.target).closest("tr").removeAttr("data-select");
             },
-            deleteLine(){
+            deleteLine() {
                 $('tr[data-select]').remove()
                 $("input[data-id]").filter("[disabled=disabled]").removeAttr('disabled')
             }
@@ -98,7 +163,8 @@
         padding: 5px;
         transition: all .3s;
     }
-    .table__link{
+
+    .table__link {
         display: inline-block;
         width: 100%;
     }

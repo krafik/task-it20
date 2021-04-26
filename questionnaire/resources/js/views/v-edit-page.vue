@@ -9,7 +9,7 @@
                             <input type="text" value="Анкета 5">
                         </div>
                         <div class="edit-quest__btns-change">
-                            <a href="addLine" @click.prevent="addLine" class="edit-quest__btn">Добавить поле</a>
+                            <a href="addLine" @click.prevent="addL" class="edit-quest__btn">Добавить поле</a>
                             <a href="deleteLine" @click.prevent="deleteLine" class="edit-quest__btn">Удалить поле</a>
                             <a href="up" @click.prevent="up" class="edit-quest__btn">Вверх</a>
                             <a href="down" @click.prevent="down" class="edit-quest__btn">Вниз</a>
@@ -41,7 +41,7 @@
                              :label="row.label"
                              :option="row.option"
                              :value="row.validValue"
-                             :key="row.id"
+                         :key="index"
                         ></vTr>
                         <!-- <tr v-for="(row, index) in quests.options" class="table__row-body">
                              <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="index"></td>
@@ -153,6 +153,17 @@
 
         },
         methods: {
+            addL() {
+                const newLine = {
+                    type: 'text',
+                    option: '',
+                    label: '',
+                    request: true,
+                    validValue: [],
+                    default: ''
+                }
+                this.quests.options.push(newLine);
+            },
             addLine() {
                 console.log('click')
                 let tr = document.createElement("tr");

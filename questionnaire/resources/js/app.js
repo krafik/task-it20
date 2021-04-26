@@ -14,6 +14,9 @@ window.JQuery = require('jquery')
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -36,10 +39,15 @@ Vue.component('v-header', require('./components/v-header.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import router from './router';
+import  store   from './store/store';
+// import  store   from './store/testStore';
 
 const app = new Vue({
+
     el: '#app',
+    store,
     router,
+
     // render: h => h(app)
     // methods:{
     //     deleteLine(){
