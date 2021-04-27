@@ -1,8 +1,11 @@
 <template>
 
-    <tr class="table__row-body">
+    <tr :data-idtr="id" class="table__row-body">
         <!--        <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="index"></td>-->
-        <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="id"></td>
+        <td class="table__checkbox">
+<!--            <input @click="checkTr" type="checkbox" :data-id="id">-->
+            <input @click="checked($event)" type="checkbox" :data-id="id" :disabled="disabled"  >
+        </td>
         <td class="table__body-cell">
             <select name="" class="table__select">
                 <option value="text">Текс</option>
@@ -59,9 +62,30 @@
             value:{
                 type: Array,
                 default:"NULL"
+            },
+            disabled:{
+                type: Boolean,
+                default: false
             }
         },
         methods:{
+            checked(event){
+                if(event.target.checked){
+                    this.$emit('checked', this.id)
+                    console.log(event.target.checked)
+                } else{
+                    this.$emit('checked')
+                    console.log(event.target.checked)
+                }
+                // console.log(this.id)
+                // if (event.target.checkbox.checked){
+                // this.$emit('checked', this.id)
+                // console.log(event.target.checked)
+                // } else {
+                //     this.$emit('checked', this.id = '')
+                // }
+
+            },
             checkTr(e){
                 // console.log($("input[data-id]"))
                 $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");

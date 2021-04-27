@@ -39,7 +39,8 @@ Vue.component('v-header', require('./components/v-header.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import router from './router';
-import  store   from './store/store';
+// import  store   from './store/store';
+import  store   from './store/index';
 // import  store   from './store/testStore';
 
 const app = new Vue({

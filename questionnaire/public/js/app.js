@@ -1926,6 +1926,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-tr",
   data: function data() {
@@ -1950,9 +1953,29 @@ __webpack_require__.r(__webpack_exports__);
     value: {
       type: Array,
       "default": "NULL"
+    },
+    disabled: {
+      type: Boolean,
+      "default": false
     }
   },
   methods: {
+    checked: function checked(event) {
+      if (event.target.checked) {
+        this.$emit('checked', this.id);
+        console.log(event.target.checked);
+      } else {
+        this.$emit('checked');
+        console.log(event.target.checked);
+      } // console.log(this.id)
+      // if (event.target.checkbox.checked){
+      // this.$emit('checked', this.id)
+      // console.log(event.target.checked)
+      // } else {
+      //     this.$emit('checked', this.id = '')
+      // }
+
+    },
     checkTr: function checkTr(e) {
       // console.log($("input[data-id]"))
       $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
@@ -2084,6 +2107,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-edit-page",
@@ -2092,6 +2118,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      idTr: '',
+      // disabled: false,
       quests: {
         title: 'Анкета №5',
         options: [{
@@ -2148,7 +2176,14 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  computed: {},
   methods: {
+    displayMessage: function displayMessage() {
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      this.idTr = id; // console.log('id' + id)
+
+      console.log(this.idTr);
+    },
     addL: function addL() {
       var newLine = {
         type: 'text',
@@ -2159,14 +2194,6 @@ __webpack_require__.r(__webpack_exports__);
         "default": ''
       };
       this.quests.options.push(newLine);
-    },
-    addLine: function addLine() {
-      console.log('click');
-      var tr = document.createElement("tr"); // tr.innerHTML= "<vTr>";
-
-      tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "                                    <option value=\"text\">Текс</option>\n" + "                                    <option value=\"tel\">Телефон</option>\n" + "                                    <option value=\"email\">e-mail</option>\n" + "                                    <option value=\"select\">Комбо-бокс</option>\n" + "                                    <option value=\"checkbox\">Чекбокс</option>\n" + "                                    <option value=\"textarea\">Абзац</option>\n" + "                                </select>\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"text\" :value=\"row.label\">\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <input type=\"checkbox\" class=\"\">\n" + "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" + "                            </td>\n" + "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" + "                            <td class=\"table__body-cell\">\n" + "                                <select name=\"\" class=\"table__select\">\n" + "\n" + "                                </select>\n" + "                            </td>";
-      var table = document.querySelector('.table__body');
-      table.append(tr);
     },
     deleteLine: function deleteLine() {
       // $('input[data-id]').each(function () {
@@ -2312,8 +2339,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2370,86 +2395,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "v-quest-all",
-  // data: () => ({
-  //     // allQuest:[],
-  //     quests: [],
-  //     user: 'ivan@tygoy.com',
-  //     time: '20.06.2010',
-  //     loading: false,
-  //     error: false
-  // }),
   data: function data() {
     return {
-      items: [{
-        name: 'Alph',
-        price: 1
-      }, {
-        name: 'Beta',
-        price: 4
-      }],
-      // loading: false,
-      // error: false,
+      /*                items: [
+                          {name: 'Alph', price: 1},
+                          {name: 'Beta', price: 4}
+                      ],*/
+      loading: true,
+      error: false,
       quests: [],
+      test: [],
       user: 'ivan@tygoy.com',
       time: '20.06.2010'
     };
   },
-  // computed: {
-  //     count() {
-  //         return this.$store.state.count
-  //     }
-  // },
+
+  /*  computed: {
+         // ...mapGetters(["allQuests"]),
+        // mapState(["quest.quests"]),
+        // somth(){
+        //     // console.log(this.$store.state)
+        //     // return this.$store.getters.allQuests
+        //     return this.$store.state.quests
+        // }
+    },*/
+  // computed: mapState(["q"]),
   computed: {
-    done: function done() {
-      // return this.$store.state.que
-      return this.$store.getters.allQuest;
+    q: function q() {
+      return this.$store.getters.allQuests;
     }
   },
-  // mapGetters({done: 'allQuest'}),
-  // mapGetters({done: 'doneTodos'}),
-  // mapState(['count']),
-  // count() {
-  //     return this.$store.getters.doneTodos
-  // }
-  // todos(){
-  //     return this.$store.getters.doneTodos
-  // }
-  // },
-  // computed:
-  // mapGetters([""])
-  // mapGetters(["allQuest"]),
   mounted: function mounted() {
-    this.$store.dispatch('loadQuests'); // this.$store.dispatch('up')
-    // this.loadQuests()
+    // this.$store.dispatch('loadQuests')
+    // this.$store.dispatch('up')
+    this.loadQuests();
+    this.$store.dispatch("getQuests");
   },
   methods: {
-    up: function up() {
-      this.$store.commit('increment');
-    },
-    // const newItem = {name:'New', price: '-'}
-    // this.items.push(newItem);
-    // setTimeout(()=>{
-    //    newItem.price='over 9000';
-    // }, 3000);
-    // ...mapActions(["loadQuests"]),
-    // loadQuests() {
-    //     axios.get('/api/quest')
-    //         .then(response => {
-    //             this.quests = response.data;
-    //             setTimeout(() => {
-    //                 this.loading = false
-    //             }, 500)
-    //         })
-    //         .catch(err => {
-    //             this.loading = false
-    //             this.error = true
-    //             console.log(err)
-    //         })
+    // some(){
+    //     this.test = this.$store.getters.allQuests
     // },
+    loadQuests: function loadQuests() {
+      var _this = this;
+
+      axios.get('/api/quest').then(function (response) {
+        _this.quests = response.data;
+        setTimeout(function () {
+          _this.loading = false;
+        }, 500);
+      })["catch"](function (err) {
+        _this.loading = false;
+        _this.error = true;
+        console.log(err);
+      });
+    },
     checkTr: function checkTr(e) {
       $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
       $('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false); // ? $(e.target).closest("tr").attr('data-select', 'select')
@@ -2712,7 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -2745,12 +2756,13 @@ Vue.component('v-header', __webpack_require__(/*! ./components/v-header.vue */ "
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ // import  store   from './store/store';
 
  // import  store   from './store/testStore';
 
 var app = new Vue({
   el: '#app',
-  store: _store_store__WEBPACK_IMPORTED_MODULE_3__.default,
+  store: _store_index__WEBPACK_IMPORTED_MODULE_3__.default,
   router: _router__WEBPACK_IMPORTED_MODULE_2__.default // render: h => h(app)
   // methods:{
   //     deleteLine(){
@@ -2886,6 +2898,122 @@ var routes = [{
 
 /***/ }),
 
+/***/ "./resources/js/store/index.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/index.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_quest__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/quest */ "./resources/js/store/modules/quest.js");
+/* harmony import */ var _modules_questAll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/questAll */ "./resources/js/store/modules/questAll.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_3__.default.use(vuex__WEBPACK_IMPORTED_MODULE_4__.default);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_4__.default.Store({
+  state: {
+    q: []
+  },
+  mutations: {
+    updateQuests: function updateQuests(state, quests) {
+      console.log('уровень мутации'); // state.quests = Object.assign({}, state.quests, quests)
+
+      state.q = quests;
+    }
+  },
+  actions: {
+    getQuests: function getQuests(ctx) {
+      /*   fetch("/api/quest")
+             .then((response) => {
+                 console.log(response.data)
+                 return response.json();
+             })
+             .then((data) => {
+                 ctx.commit('updateQuests', data)
+                 // console.log(typeof (data));
+             });*/
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/quest").then(function (response) {
+        var questsRes = response.data;
+        ctx.commit('updateQuests', questsRes);
+        console.log('уровень экшна');
+        console.log(questsRes);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
+  getters: {
+    allQuests: function allQuests(state) {
+      console.log('уровень геттера');
+      return state.q;
+    }
+  }
+  /*modules: {
+      quest
+  }*/
+
+}));
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/quest.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/quest.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ // import vue from 'vue'
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: {
+    quests: []
+  },
+  mutations: {
+    updateQuests: function updateQuests(state, quests) {
+      console.log('уровень мутации');
+      this.Vue.set(state.quests, '0', quests); // state.quests = quests
+    }
+  },
+  actions: {
+    getQuests: function getQuests(ctx) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/quest").then(function (response) {
+        var questsRes = response.data;
+        ctx.commit('updateQuests', questsRes);
+        console.log('уровень экшна');
+        console.log(response.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
+  getters: {
+    allQuests: function allQuests(state) {
+      console.log('уровень геттера');
+      return state.quests;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/questAll.js":
 /*!************************************************!*\
   !*** ./resources/js/store/modules/questAll.js ***!
@@ -2898,70 +3026,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
-
-/***/ }),
-
-/***/ "./resources/js/store/store.js":
-/*!*************************************!*\
-  !*** ./resources/js/store/store.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_questAll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/questAll */ "./resources/js/store/modules/questAll.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-
-vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
-  state: {
-    que: []
-  },
-  actions: {
-    loadQuests: function loadQuests(ctx) {
-      var _this = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/quest').then(function (response) {
-        var quests = response.data;
-        console.log('на уровне экшена', _this.state.que); // console.log(typeof(quests))
-        // console.log('объект контекст commit ', ctx.commit('updateQ', quests))
-
-        ctx.commit('updateQ', quests); // ctx.commit('updateQ', quests)
-        // setTimeout(() => {
-        //     this.loading = false
-        // }, 500)
-      })["catch"](function (err) {
-        // this.loading = false
-        // this.error = true
-        console.log(err);
-      });
-    }
-  },
-  mutations: {
-    updateQ: function updateQ(state, quests) {
-      // console.log(state)
-      // console.log(quests)
-      // state.que = Object.assign({}, quests)
-      // console.log(state.que)
-      state.que = quests;
-    }
-  },
-  getters: {
-    allQuest: function allQuest(state) {
-      console.log('на уровне геттера', state.que);
-      return state.que;
-    }
-  }
-}));
 
 /***/ }),
 
@@ -39043,28 +39107,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", { staticClass: "table__row-body" }, [
-    _c("td", { staticClass: "table__checkbox" }, [
-      _c("input", {
-        attrs: { type: "checkbox", "data-id": _vm.id },
-        on: { click: _vm.checkTr }
-      })
-    ]),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("td", { staticClass: "table__body-cell" }, [
-      _c("input", { attrs: { type: "text" }, domProps: { value: _vm.label } })
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("td", { staticClass: "table__body-cell" }, [
-      _c("input", { attrs: { type: "text" }, domProps: { value: _vm.value } })
-    ]),
-    _vm._v(" "),
-    _vm._m(2)
-  ])
+  return _c(
+    "tr",
+    { staticClass: "table__row-body", attrs: { "data-idtr": _vm.id } },
+    [
+      _c("td", { staticClass: "table__checkbox" }, [
+        _c("input", {
+          attrs: {
+            type: "checkbox",
+            "data-id": _vm.id,
+            disabled: _vm.disabled
+          },
+          on: {
+            click: function($event) {
+              return _vm.checked($event)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("td", { staticClass: "table__body-cell" }, [
+        _c("input", { attrs: { type: "text" }, domProps: { value: _vm.label } })
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("td", { staticClass: "table__body-cell" }, [
+        _c("input", { attrs: { type: "text" }, domProps: { value: _vm.value } })
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -39219,8 +39295,10 @@ var render = function() {
                         id: index,
                         label: row.label,
                         option: row.option,
-                        value: row.validValue
-                      }
+                        value: row.validValue,
+                        disabled: false
+                      },
+                      on: { checked: _vm.displayMessage }
                     })
                   }),
                   1
@@ -39543,139 +39621,209 @@ var render = function() {
     { staticClass: "app__section questionnaire-table app__questionnaire" },
     [
       _c("div", { staticClass: "container" }, [
-        _c("table", { staticClass: "table" }, [
-          _c("tbody", [_c("tr", [_vm._v(_vm._s(_vm.done))])])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "questionnaire-table__wrapper" }, [
-          _c("div", { staticClass: "questionnaire-table__header" }, [
-            _c("span", [
-              _vm._v(
-                "\n                        Список анкет пользователя " +
-                  _vm._s(_vm.user) +
-                  "\n                    "
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "questionnaire-table__btns" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "questionnaire-table__btn-add",
-                    attrs: { to: "/edit" }
-                  },
-                  [_vm._v("Добавить")]
-                ),
+        _vm.loading
+          ? _c("div", { staticClass: "loading" }, [
+              _c("span", [_vm._v("Загрузка...")])
+            ])
+          : !_vm.loading && !_vm.error
+          ? _c("div", { staticClass: "questionnaire-table__wrapper" }, [
+              _c("div", { staticClass: "questionnaire-table__header" }, [
+                _c("span", [
+                  _vm._v(
+                    "\n                    Список анкет пользователя " +
+                      _vm._s(_vm.user) +
+                      "\n                "
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
-                  "a",
-                  {
-                    staticClass: "questionnaire-table__btn-del",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.deleteLine($event)
-                      }
-                    }
-                  },
-                  [_vm._v("Удалить")]
+                  "div",
+                  { staticClass: "questionnaire-table__btns" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "questionnaire-table__btn-add",
+                        attrs: { to: "/edit" }
+                      },
+                      [_vm._v("Добавить")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "questionnaire-table__btn-del",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.deleteLine($event)
+                          }
+                        }
+                      },
+                      [_vm._v("Удалить")]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "questionnaire-table__wrap" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table questionnaire__table",
-                attrs: { width: "750px", border: "1" }
-              },
-              [
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "questionnaire-table__wrap" }, [
                 _c(
-                  "tbody",
-                  _vm._l(_vm.quests, function(item) {
-                    return _c("tr", { staticClass: "table__row-body" }, [
-                      _c("td", [
-                        _c("input", {
-                          attrs: { type: "checkbox", "data-id": item.id },
-                          on: { click: _vm.checkTr }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-title" },
-                        [
+                  "table",
+                  {
+                    staticClass: "table questionnaire__table",
+                    attrs: { width: "750px", border: "1" }
+                  },
+                  [
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.quests, function(item) {
+                        return _c("tr", { staticClass: "table__row-body" }, [
+                          _c("td", [
+                            _c("input", {
+                              attrs: { type: "checkbox", "data-id": item.id },
+                              on: { click: _vm.checkTr }
+                            })
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "router-link",
-                            {
-                              staticClass: "table__link",
-                              attrs: { to: "/form/" + item.id }
-                            },
-                            [_vm._v(_vm._s(item.title))]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-edit" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "table__link",
-                              attrs: { to: "/edit" }
-                            },
-                            [_vm._v("Правка")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-result" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "table__link",
-                              attrs: {
-                                title: item.title,
-                                to: "/result/" + item.id
-                              }
-                            },
+                            "td",
+                            { staticClass: "questionnaire-table__cell-title" },
                             [
-                              _vm._v(
-                                "\n                                    результаты($)\n                                "
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/form/" + item.id }
+                                },
+                                [_vm._v(_vm._s(item.title))]
                               )
-                            ]
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-edit" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/edit" }
+                                },
+                                [_vm._v("Правка")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-result" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: {
+                                    title: item.title,
+                                    to: "/result/" + item.id
+                                  }
+                                },
+                                [_vm._v(" результаты($)")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-time" },
+                            [_vm._v(_vm._s(_vm.time))]
                           )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "questionnaire-table__cell-time" },
-                        [_vm._v(_vm._s(_vm.time))]
-                      )
-                    ])
-                  }),
-                  0
+                        ])
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.q, function(item) {
+                        return _c("tr", { staticClass: "table__row-body" }, [
+                          _c("td", [
+                            _c("input", {
+                              attrs: { type: "checkbox", "data-id": item.id },
+                              on: { click: _vm.checkTr }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-title" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/form/" + item.id }
+                                },
+                                [_vm._v(_vm._s(item.title))]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-edit" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: { to: "/edit" }
+                                },
+                                [_vm._v("Правка")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-result" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "table__link",
+                                  attrs: {
+                                    title: item.title,
+                                    to: "/result/" + item.id
+                                  }
+                                },
+                                [_vm._v(" результаты($)")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "questionnaire-table__cell-time" },
+                            [_vm._v(_vm._s(_vm.time))]
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ]
                 )
-              ]
-            )
-          ])
-        ])
+              ])
+            ])
+          : _c("div", { staticClass: "error error-404" }, [_vm._v("Error!")])
       ])
     ]
   )

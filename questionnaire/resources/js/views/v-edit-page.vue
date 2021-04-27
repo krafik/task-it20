@@ -41,7 +41,9 @@
                              :label="row.label"
                              :option="row.option"
                              :value="row.validValue"
-                         :key="index"
+                             :key="index"
+                             :disabled="false"
+                             @checked="displayMessage"
                         ></vTr>
                         <!-- <tr v-for="(row, index) in quests.options" class="table__row-body">
                              <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="index"></td>
@@ -70,6 +72,7 @@
                          </tr>-->
                         </tbody>
                     </table>
+<!--                    :disabled="idTr != index ? true : false"-->
                 </div>
             </form>
         </div>
@@ -86,6 +89,8 @@
         },
         data() {
             return {
+                idTr: '',
+                // disabled: false,
                 quests: {
                     title: 'Анкета №5',
                     options:
@@ -152,7 +157,15 @@
             }
 
         },
+        computed:{
+
+        },
         methods: {
+            displayMessage(id = '') {
+                this.idTr = id
+                // console.log('id' + id)
+                console.log(this.idTr)
+            },
             addL() {
                 const newLine = {
                     type: 'text',
@@ -163,37 +176,6 @@
                     default: ''
                 }
                 this.quests.options.push(newLine);
-            },
-            addLine() {
-                console.log('click')
-                let tr = document.createElement("tr");
-                // tr.innerHTML= "<vTr>";
-                tr.innerHTML = "      <td class=\"table__checkbox\"><input type=\"checkbox\"></td>\n" +
-                    "                            <td class=\"table__body-cell\">\n" +
-                    "                                <select name=\"\" class=\"table__select\">\n" +
-                    "                                    <option value=\"text\">Текс</option>\n" +
-                    "                                    <option value=\"tel\">Телефон</option>\n" +
-                    "                                    <option value=\"email\">e-mail</option>\n" +
-                    "                                    <option value=\"select\">Комбо-бокс</option>\n" +
-                    "                                    <option value=\"checkbox\">Чекбокс</option>\n" +
-                    "                                    <option value=\"textarea\">Абзац</option>\n" +
-                    "                                </select>\n" +
-                    "                            </td>\n" +
-                    "                            <td class=\"table__body-cell\">\n" +
-                    "                                <input type=\"text\" :value=\"row.label\">\n" +
-                    "                            </td>\n" +
-                    "                            <td class=\"table__body-cell\">\n" +
-                    "                                <input type=\"checkbox\" class=\"\">\n" +
-                    "                                <!--                                <input type=\"checkbox\" v-else=\"row.request\" class=\"\">-->\n" +
-                    "                            </td>\n" +
-                    "                            <td class=\"table__body-cell\"><input type=\"text\" :value=\"row.validValue\"></td>\n" +
-                    "                            <td class=\"table__body-cell\">\n" +
-                    "                                <select name=\"\" class=\"table__select\">\n" +
-                    "\n" +
-                    "                                </select>\n" +
-                    "                            </td>"
-                let table = document.querySelector('.table__body');
-                table.append(tr);
             },
             deleteLine() {
 
