@@ -111,7 +111,7 @@
             //     this.test = this.$store.getters.allQuests
             // },
             loadQuests() {
-                axios.get('/api/quest')
+                axios.get('https://krafik.ru/api/quest')
                     .then(response => {
                         this.quests = response.data;
                         setTimeout(() => {

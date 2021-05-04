@@ -4,7 +4,7 @@
         <!--        <td class="table__checkbox"><input @click="checkTr" type="checkbox" :data-id="index"></td>-->
         <td class="table__checkbox">
 <!--            <input @click="checkTr" type="checkbox" :data-id="id">-->
-            <input @click="checked($event)" type="checkbox" :data-id="id" :disabled="disabled"  >
+            <input @click="checked($event)" :checked="isChecked" type="checkbox" :data-id="id" :disabled="disabled"  >
         </td>
         <td class="table__body-cell">
             <select name="" class="table__select">
@@ -50,10 +50,17 @@
             //     type: String,
             //     default: "NULL"
             // }
+            isChecked:{
+                type: Boolean,
+                default: false
+            },
             title: {
                 type: String
             },
             id:{
+                type: Number
+            },
+            idTr:{
                 type: Number
             },
             label:{
@@ -70,63 +77,11 @@
         },
         methods:{
             checked(event){
-                if(event.target.checked){
-                    this.$emit('checked', this.id)
-                    console.log(event.target.checked)
-                } else{
-                    this.$emit('checked')
-                    console.log(event.target.checked)
-                }
-                // console.log(this.id)
-                // if (event.target.checkbox.checked){
-                // this.$emit('checked', this.id)
-                // console.log(event.target.checked)
-                // } else {
-                //     this.$emit('checked', this.id = '')
-                // }
-
+                event.target.checked ? this.$emit('checked', this.id) : this.$emit('checked',null)
+                // console.log(event.target.parent)
+                // console.log(document.querySelector(`tr[data-idtr="${this.id}"]`).parentNode)
+                // event.target.checked ? document.querySelector(`tr[data-idtr="${this.id}"]`).setAttribute('data-select','select') : document.querySelector(`tr[data-idtr="${this.id}"]`).removeAttribute('data-select')
             },
-            checkTr(e){
-                // console.log($("input[data-id]"))
-                $(e.target).is(':checked') ? $(e.target).closest("tr").attr('data-select', 'select') : $(e.target).closest("tr").removeAttr("data-select");
-
-                $('input[data-id]:checked').length >=1  ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
-                // document.querySelectorAll ('input[data-id]:checked').length >= 1 ? $("input[data-id]").filter(":not(':checked')").attr('disabled', true) : $("input[data-id]").filter(":not(':checked')").attr('disabled', false);
-                // if (document.querySelectorAll ('input[data-id]:checked').length >= 1){
-                //     $("input[data-id]").filter(":not(':checked')").attr('disabled', true)
-                    // let count = document.querySelectorAll('tr[data-select="select"]')
-                    //     console.log($('input[type="checkbox"]:not(:checked)'))
-                    //     $('input[data-id]:not(:checked)').each(function (i) {
-                            // $(this).hover(function () {
-                            //         alert('можно выбрать только одну строку');
-                            // })
-                            // $(this).prop('disable',true)
-                        // })
-                    // $("input[type=checkbox]").filter(":not(':checked')").on('click',()=>{return false})
-                    // alert('можно выбрать только одну строку');
-                    // $("input[type=checkbox]").filter(":not(':checked')")
-                    // console.log($("input[data-id]").filter(":not(':checked')"))
-                    // setTimeout(()=>{
-                        // let count = document.querySelectorAll('tr[data-select="select"]')
-                        // console.log(count)
-                        // count[1].removeAttribute('data-select')
-                    // }, 1000)
-
-                    // let count = document.querySelectorAll('tr[data-select]')
-                    // $(count[1]).removeAttr("data-select")
-                    // $(e.target).closest("tr").attr("data-select") ? console.log('true'): console.log('false')
-                    // $(e.target).closest("tr").removeAttr("data-select")
-                // }
-                // console.log(e.target.parentElement.parentElement);
-                // console.log($(this).closest('tr'))
-                // $(e.target).closest("tr").remove()
-
-                // $(e.target).closest("tr").attr('data-select', 'select')
-                // console.log(e.target); removeAttr("title")
-                // console.log($(e.target));
-                // e.target.parentElement.parentElement.setAttribute('data-select', 'select')
-
-            }
         }
     }
 </script>

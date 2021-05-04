@@ -29,7 +29,7 @@ export default new Vuex.Store({
                     // console.log(typeof (data));
                 });*/
             axios
-                .get("/api/quest")
+                .get("https://krafik.ru/api/quest")
                 .then((response) => {
                     const questsRes = response.data;
                     ctx.commit('updateQuests', questsRes)
