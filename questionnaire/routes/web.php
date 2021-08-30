@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '.*');
+//Route::get('/{any}', function () {
+//    return view('index');
+//})->where('any', '.*');
+
+Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 //Route::get('/{vue_capture?}', function () {
 //    return view('index');
 //})->where('vue_capture', '[\/\w\.-]*');

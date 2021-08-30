@@ -75,7 +75,7 @@
                     {name: 'Alph', price: 1},
                     {name: 'Beta', price: 4}
                 ],*/
-                loading: true,
+                loading: false,
                 error: false,
                 quests: [],
                 test:[],
@@ -103,7 +103,7 @@
         mounted() {
             // this.$store.dispatch('loadQuests')
             // this.$store.dispatch('up')
-            this.loadQuests()
+            // this.loadQuests()
             this.$store.dispatch("getQuests");
         },
         methods: {
